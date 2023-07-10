@@ -18,10 +18,10 @@
                                <span class="mini-click-non">Dashoard</span>
                             </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">--</span></a></li>
-                            <li><a title="Dashboard v.2" href="index-1.html"><span class="mini-sub-pro">view results</span></a></li>
-                            <li><a title="Dashboard v.3" href="index-2.html"><span class="mini-sub-pro">mark attendance</span></a></li>
-                            <li><a title="Analytics" href="analytics.html"><span class="mini-sub-pro">input mark</span></a></li>
+                            <li><a title="dashboard" href="{{ route('dashboard') }}"><span class="mini-sub-pro"><i class="fa fa-arrow-right"></i> </span></a></li>
+                            <li><a title="check result" href="{{ route('result.check') }}"><span class="mini-sub-pro">view results</span></a></li>
+                            <li><a title="attendance" href="{{ route('student.attend') }}"><span class="mini-sub-pro">mark attendance</span></a></li>
+                            <li><a title="mark" href="{{ route('input.mark') }}"><span class="mini-sub-pro">input mark</span></a></li>
                             {{-- <li><a title="Widgets" href="widgets.html"><span class="mini-sub-pro">notify</span></a></li> --}}
                         </ul>
                     </li>

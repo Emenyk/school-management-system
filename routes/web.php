@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\ProfileController;
@@ -27,10 +28,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 // ->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::view('/application', 'mailbox.create');
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('students', StudentController::class);
@@ -46,6 +45,9 @@ Route::view('dashboard/mail/create', 'mailbox.create')->name('mailing.create');
 Route::view('dashboard/mail/show', 'mailbox.show')->name('mailing.show');
 
 Route::view('dashboard/event', 'event.index')->name('event.index');
+Route::get('dashboard/checkResult', [AssessmentController::class, 'checkResult'])->name('result.check');
+Route::get('dashboard/studentAttendance', [AssessmentController::class, 'studentAttendance'])->name('student.attend');
+Route::get('dashboard/inputMark', [AssessmentController::class, 'inputMark'])->name('input.mark');
 
 
 
