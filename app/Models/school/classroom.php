@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Models\school;
+namespace App\Models\School;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class classroom extends Model
+class Classroom extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'uniqueID',
+        'name',
+        'teacher',
+    ];
 }

@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Models\School;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Library extends Model
+class Memo extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        
-        'asset',
-        'author',
-        'year',
-        'classroom',
-        'status',
-
+        'uniqueID',
+        'subject',
+        'body',
+        'attachment',
+        'reciever',
     ];
 }

@@ -16,12 +16,15 @@ class StudentLoginController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
+
         if (Auth::guard('student')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
             return redirect()->intended('/dashboard');
         }
 

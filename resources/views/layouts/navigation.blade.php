@@ -20,8 +20,8 @@
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="dashboard" href="{{ route('dashboard') }}"><span class="mini-sub-pro"><i class="fa fa-arrow-right"></i> </span></a></li>
                             <li><a title="check result" href="{{ route('result.check') }}"><span class="mini-sub-pro">view results</span></a></li>
-                            <li><a title="attendance" href="{{ route('student.attend') }}"><span class="mini-sub-pro">mark attendance</span></a></li>
-                            <li><a title="assessment" href="{{ route('input.mark') }}"><span class="mini-sub-pro">assessment</span></a></li>
+                            <li><a title="attendance" href="{{ route('student.attend') }}"><span class="mini-sub-pro">attendance</span></a></li>
+                            <li><a title="assessment" href="{{ route('input.mark') }}"><span class="mini-sub-pro">assign mark</span></a></li>
 
                         </ul>
                     </li>
@@ -71,11 +71,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Mailbox</span></a>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Memo</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Inbox" href="{{ route('mailing.show') }}"><span class="mini-sub-pro">Inbox</span></a></li>
-                            <li><a title="View Mail" href="{{ route('mailing.index') }}"><span class="mini-sub-pro">View Mail</span></a></li>
-                            <li><a title="Compose Mail" href="{{ route('mailing.create') }}"><span class="mini-sub-pro">Compose Mail</span></a></li>
+                            <li><a title="Inbox" href="{{ route('memo.show') }}"><span class="mini-sub-pro">Inbox</span></a></li>
+                            <li><a title="View Memo" href="{{ route('memo.index') }}"><span class="mini-sub-pro">View</span></a></li>
+                            <li><a title="Compose Memo" href="{{ route('memo.create') }}"><span class="mini-sub-pro">Compose</span></a></li>
                         </ul>
                     </li>
 

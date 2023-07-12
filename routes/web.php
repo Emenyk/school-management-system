@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\ProfileController;
@@ -9,7 +9,8 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\LibraryController;
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\MemoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,20 +39,19 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('teachers', TeacherController::class);
     Route::resource('parents', ParentsController::class);
     Route::resource('libraries', LibraryController::class);
+    Route::get('memo', [MemoController::class, 'index'] )->name('memo.index');
+    Route::get('memo/create', [MemoController::class, 'create'] )->name('memo.create');
+    Route::post('memo/create', [MemoController::class, 'store'] )->name('memo.store');
+    Route::get('memo/show', [MemoController::class, 'show'] )->name('memo.show');
 });
 
-Route::view('dashboard/mail', 'mailbox.index')->name('mailing.index');
-Route::view('dashboard/mail/create', 'mailbox.create')->name('mailing.create');
-Route::view('dashboard/mail/show', 'mailbox.show')->name('mailing.show');
+
 
 Route::view('dashboard/event', 'event.index')->name('event.index');
-Route::get('dashboard/checkResult', [AssessmentController::class, 'checkResult'])->name('result.check');
-Route::get('dashboard/studentAttendance', [AssessmentController::class, 'studentAttendance'])->name('student.attend');
-Route::get('dashboard/inputMark', [AssessmentController::class, 'inputMark'])->name('input.mark');
-
-
-
-
+Route::get('dashboard/inputMark', [MarkController::class, 'create'])->name('input.mark');
+Route::get('dashboard/checkResult', [MarkController::class, 'checkResult'])->name('result.check');
+Route::post('dashboard/checkResult', [MarkController::class, 'show'])->name('result.show');
+Route::get('dashboard/studentAttendance', [AttendanceController::class, 'create'])->name('student.attend');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

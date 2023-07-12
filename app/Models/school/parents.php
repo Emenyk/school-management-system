@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\school;
+namespace App\Models\School;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class parents extends Authenticatable
+class Parents extends Authenticatable
 {
     use HasFactory, Notifiable;
 
@@ -14,11 +14,13 @@ class parents extends Authenticatable
         'name',
         'email',
         'password',
+        'telephone',
+        'address',
     ];
 
     protected $hidden = [
         'password',
-        'emember_token',
+        'remember_token',
     ];
 
     protected $casts = [

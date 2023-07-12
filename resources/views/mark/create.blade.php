@@ -7,8 +7,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="sparkline8-list">
                         <div class="basic-login-inner">
-                            <h3>Check Result</h3>
-                            <p>select exam Type</p>
+                            <h3>Add Mark</h3>
+                            <p>select class and subject</p>
                             <form action="#">
 
                                 <div class="form-select-list">
@@ -19,7 +19,24 @@
                                             <option>Select 4</option>
                                         </select>
                                 </div>
-
+                                <br>
+                                <div class="form-select-list">
+                                    <select class="form-control custom-select-value" name="account">
+                                            <option>class</option>
+                                            <option>Select 2</option>
+                                            <option>Select 3</option>
+                                            <option>Select 4</option>
+                                        </select>
+                                </div>
+                                <br>
+                                <div class="form-select-list">
+                                    <select class="form-control custom-select-value" name="account">
+                                            <option>subject</option>
+                                            <option>Select 2</option>
+                                            <option>Select 3</option>
+                                            <option>Select 4</option>
+                                        </select>
+                                </div>
                                 <br>
                                 <div class="form-group-inner">
 
@@ -35,7 +52,7 @@
                     <div class="sparkline9-list mt-b-30 res-mg-t-30 analysis-progrebar-ctn">
                         <div class="sparkline9-hd">
                             <div class="main-sparkline9-hd">
-                                <h1>Student Name</h1>
+                                <h1>Student Mark</h1>
                             </div>
                         </div>
                         <div class="sparkline9-graph">
@@ -52,21 +69,21 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>mark
+                                            <td><input type="number" name="mark" id="">
                                             </td>
                                             <td>Roshid</td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>mark
+                                            <td><input type="number" name="mark" id="">
                                             </td>
                                             <td>Khan</td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>mark
+                                            <td><input type="number" name="mark" id="" >
                                             </td>
                                             <td>Shak</td>
                                             <td>..........</td>

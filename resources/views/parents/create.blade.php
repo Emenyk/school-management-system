@@ -15,7 +15,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="review-content-section">
                                             <div id="dropzone1" class="pro-ad">
-                                                <form action="{{ route('register') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype="multipart/form-data">
+                                                <form action="{{ route('parents.create') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="row">
 
@@ -24,13 +24,13 @@
                                                                 <input name="name" type="text" class="form-control" placeholder="Full Name">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="address" type="text" class="form-control" placeholder="Address">
+                                                                <input name="email" type="email" class="form-control" placeholder="Email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="address" type="address" class="form-control" placeholder="Address">
                                                             </div>
                                                             <div class="form-group">
                                                                 <input name="telephone" type="tel" class="form-control" placeholder="Mobile number">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" placeholder="Email">
                                                             </div>
                                                             {{-- <div class="form-group">
                                                                 <input type="number" class="form-control" placeholder="Phone">
@@ -49,7 +49,7 @@
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                                             <div class="form-group">
-                                                                <select name="classroom" class="form-control">
+                                                                <select name="child" class="form-control">
                                                                         <option value="none" selected="" disabled="">Select child</option>
                                                                         <option value="0">Nigeria</option>
                                                                         <option value="1">Others</option>

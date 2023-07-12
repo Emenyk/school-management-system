@@ -25,8 +25,8 @@ Route::middleware('guest')->group(function () {
 
     // students login/logout
     Route::get('/students/login', [SchoolLoginsStudentLoginController::class, 'create'])->name('student.login');
-    Route::post('/students/login', [SchoolLoginsStudentLoginController::class, 'store'])->name('student.login');
-    Route::post('/students/logout', [SchoolLoginsStudentLoginController::class, 'logout'])->name('student.logout');
+    Route::post('/students/login', [SchoolLoginsStudentLoginController::class, 'store'])->name('student.loginstore');
+    Route::get('/students/logout', [SchoolLoginsStudentLoginController::class, 'logout'])->name('student.logout');
 
     // teachers login/logout
     Route::get('/teachers/login', [SchoolLoginsTeacherLoginController::class, 'create'])->name('teacher.login');

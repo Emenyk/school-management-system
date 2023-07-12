@@ -78,15 +78,15 @@ return [
         ],
         'students' => [
             'driver' => 'eloquent',
-            'model' => App\Models\school\student::class,
+            'model' => App\Models\School\Student::class,
         ],
         'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\school\parents::class,
+            'model' => App\Models\School\Parents::class,
         ],
         'teachers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\school\teacher::class,
+            'model' => App\Models\School\Teacher::class,
         ],
 
         // 'users' => [
