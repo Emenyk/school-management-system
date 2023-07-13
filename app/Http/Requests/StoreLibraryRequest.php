@@ -21,8 +21,16 @@ class StoreLibraryRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            //
+            'asset' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'year' => 'required|integer|min:1900|max:2023',
+            'classroom' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+            'file' => 'nullable|file',
         ];
+
     }
+
 }

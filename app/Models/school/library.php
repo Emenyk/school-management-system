@@ -10,11 +10,12 @@ class Library extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+
         'asset',
         'author',
         'year',
         'classroom',
+        'file',
         'status',
 
     ];

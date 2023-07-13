@@ -22,7 +22,13 @@ class StoresubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'code' => 'required',
+            'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
+            'description' => 'required|string',
         ];
     }
 }
+
+
+

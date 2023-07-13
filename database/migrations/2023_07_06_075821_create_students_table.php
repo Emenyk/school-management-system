@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('uniqueID')->unique();
+            $table->date('DOB');
+            $table->string('gender');
+            $table->string('address');
+            $table->string('telephone');
+            $table->string('classroom');
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,3 +37,9 @@ return new class extends Migration
         Schema::dropIfExists('students');
     }
 };
+
+
+
+
+
+

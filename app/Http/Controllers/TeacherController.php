@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\school\teacher;
+use Illuminate\Support\Str;
+use App\Models\School\Teacher;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreteacherRequest;
 use App\Http\Requests\UpdateteacherRequest;
@@ -30,15 +31,27 @@ class TeacherController extends Controller
      */
     public function store(StoreteacherRequest $request)
     {
-        dd($request);
-        $validatedData = $request->validated();
-        $teacher = teacher::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+        $image = $request->file('image');
+        $imageName = now().$image.$image->extension();
+        $image->move(public_path('images/teachers'), $imageName);
+
+        // Create a new user instance using the validated data
+        $teacher = Teacher::create([
+            'uniqueID' => Str::random(10),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'DOB' => $request->DOB,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'telephone' => $request->telephone,
+            'image' => $imageName,
+            'subject_id' => $request->subject_id,
         ]);
 
-        return redirect('/login');
+        // Redirect the user to a success page
+        return redirect()->route('dashboard')->with('success', 'teacher created successfully.');
+
     }
 
     /**

@@ -22,11 +22,18 @@ class StorestudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:students',
-            // 'password' => 'required|string|min:8|confirmed',
-
+            'uniqueID' => 'nullable|string|max:255|unique:students',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:students|max:255',
+            'password' => 'required|string|min:8|max:255|confirmed',
+            'DOB' => 'required|date',
+            'gender' => 'required|in:male,female',
+            'address' => 'required|string|max:255',
+            'telephone' => 'required|string|max:20',
+            'classroom' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
         ];
     }
+
+
 }

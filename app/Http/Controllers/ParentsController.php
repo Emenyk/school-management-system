@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\school\parents;
+use Illuminate\Support\Str;
+use App\Models\School\Parents;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreparentsRequest;
 use App\Http\Requests\UpdateparentsRequest;
@@ -30,16 +31,23 @@ class ParentsController extends Controller
      */
     public function store(StoreparentsRequest $request)
     {
-        dd($request);
-        $validatedData = $request->validated();
+        $image = $request->file('image');
+        $imageName = now().$image.$image->extension();
+        $image->move(public_path('images/parents'), $imageName);
 
-        $parents = parents::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+        $parents = Parents::create([
+            'uniqueID'      =>  Str::random(10),
+            'name'          =>  $request->name,
+            'email'         =>  $request->email,
+            'password'      =>  Hash::make($request->password),
+            'telephone'     =>  $request->telephone,
+            'gender'        =>  $request->gender,
+            'image'         =>  $imageName,
+            'address'       =>  $request->address,
+
         ]);
 
-        return redirect('/login');
+        return redirect('/parents/login');
     }
 
     /**

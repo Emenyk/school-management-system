@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
+            $table->string('uniqueID')->unique();
+            $table->string('name');
+            $table->string('status');
+            $table->string('image')->nullable();
+            $table->string('classTeacher');
             $table->timestamps();
+
         });
     }
 
@@ -25,3 +31,5 @@ return new class extends Migration
         Schema::dropIfExists('classrooms');
     }
 };
+
+

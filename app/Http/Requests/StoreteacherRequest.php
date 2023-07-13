@@ -27,6 +27,20 @@ class StoreteacherRequest extends FormRequest
             // 'email' => 'equired|string|email|max:255|unique:students',
             // 'password' => 'equired|string|min:8|confirmed',
 
+
+
+        ];
+        return [
+            'uniqueID' => 'nullable|string|max:255|unique:teachers',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:teachers|max:255',
+            'password' => 'required|string|min:8|confirmed',
+            'DOB' => 'required|date',
+            'gender' => 'required|in:male,female',
+            'address' => 'required|string|max:255',
+            'telephone' => 'required|string|max:20',
+            'subject_id' => 'required|integer',
+            'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
         ];
     }
 }

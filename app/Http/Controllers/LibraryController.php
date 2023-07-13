@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\school\library;
+use App\Models\School\Library;
 use App\Http\Requests\StoreLibraryRequest;
 use App\Http\Requests\UpdateLibraryRequest;
 
@@ -29,7 +29,21 @@ class LibraryController extends Controller
      */
     public function store(StoreLibraryRequest $request)
     {
-        dd($request);
+        $file = $request->file('file');
+        $fileName = now().$file.$file->extension();
+        $file->move(public_path('files/libraries'), $fileName);
+
+        $asset = Library::create([
+            'asset' => $request->asset,
+            'author' => $request->author,
+            'year' => $request->year,
+            'classroom' => $request->classroom,
+            'status' => $request->status,
+            'file' => $fileName
+        ]);
+
+        return redirect()->back();
+
     }
 
     /**

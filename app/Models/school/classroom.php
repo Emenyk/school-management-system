@@ -12,7 +12,7 @@ class Classroom extends Model
     protected $fillable = [
         'uniqueID',
         'name',
-        'teacher',
+        'classTeacher',
         'status',
     ];
 }

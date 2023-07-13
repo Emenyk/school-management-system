@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('libraries', function (Blueprint $table) {
             $table->id();
+            $table->string('asset');
+            $table->string('author');
+            $table->integer('year');
+            $table->string('classroom');
+            $table->string('status');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
@@ -25,3 +31,5 @@ return new class extends Migration
         Schema::dropIfExists('libraries');
     }
 };
+
+

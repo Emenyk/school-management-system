@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\school\student;
+use Illuminate\Support\Str;
+use App\Models\School\Student;
+
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
 
@@ -32,18 +33,22 @@ class StudentController extends Controller
      */
     public function store(StorestudentRequest $request)
     {
-        // $validated_data = $request->validated();
-        dd($request);
-        $student = Student::create([
+        $image = $request->file('image');
+        $imageName = now().$image.$image->extension();
+        $image->move(public_path('images/students'), $imageName);
 
+        $student = Student::create([
+            'uniqueID' => Str::random(10),
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password,)
+            'password' => Hash::make($request->password),
+            'DOB' => $request->DOB,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'telephone' => $request->telephone,
+            'classroom' => $request->classroom,
+            'image' => $imageName,
         ]);
-
-
-
-
 
     }
 

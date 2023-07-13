@@ -14,6 +14,6 @@ class Subject extends Model
         'code',
         'image',
         'description',
-        'teacher_id',
     ];
+    
 }
