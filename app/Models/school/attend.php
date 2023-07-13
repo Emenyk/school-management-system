@@ -15,5 +15,5 @@ class Attend extends Model
         'class_id',
         'status',
     ];
-    
+
 }

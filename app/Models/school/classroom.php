@@ -13,5 +13,6 @@ class Classroom extends Model
         'uniqueID',
         'name',
         'teacher',
+        'status',
     ];
 }

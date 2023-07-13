@@ -41,7 +41,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('libraries', LibraryController::class);
     Route::get('memo', [MemoController::class, 'index'] )->name('memo.index');
     Route::get('memo/create', [MemoController::class, 'create'] )->name('memo.create');
-    Route::post('memo/create', [MemoController::class, 'store'] )->name('memo.store');
+    Route::post('memo/store', [MemoController::class, 'store'] )->name('memo.store');
     Route::get('memo/show', [MemoController::class, 'show'] )->name('memo.show');
 });
 

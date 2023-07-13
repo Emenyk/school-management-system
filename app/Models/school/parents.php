@@ -11,11 +11,14 @@ class Parents extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'uniqueID',
         'name',
         'email',
         'password',
         'telephone',
+        'gender',
         'address',
+        'student_id'
     ];
 
     protected $hidden = [

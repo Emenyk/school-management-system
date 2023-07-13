@@ -15,7 +15,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad">
-                                            <form action="{{ route('students.create') }}" method="POST" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload" enctype="multipart/form-data">
+                                            <form action="{{ route('students.store') }}" method="POST"  id="demo1-upload" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
 
@@ -32,15 +32,9 @@
                                                         <div class="form-group">
                                                             <input name="telephone" type="tel" class="form-control" placeholder="Mobile number">
                                                         </div>
-                                                        <div class="form-group alert-up-pd">
-                                                            <div class="dz-message needsclick download-custom">
-                                                                <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                                                <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                                                <p class="edudropnone"><span class="note needsclick">(This is just a dropzone. Selected image)</span>
-                                                                </p>
-                                                                <input name="image" class="hd-pro-img" type="text" />
-                                                            </div>
-                                                        </div>
+                                                        <br>
+                                                        <i>Student Image</i>
+                                                        <input type="file" name="image" id="">
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">

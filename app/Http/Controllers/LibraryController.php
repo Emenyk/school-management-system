@@ -29,7 +29,7 @@ class LibraryController extends Controller
      */
     public function store(StoreLibraryRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

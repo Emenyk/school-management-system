@@ -30,6 +30,7 @@ class ParentsController extends Controller
      */
     public function store(StoreparentsRequest $request)
     {
+        dd($request);
         $validatedData = $request->validated();
 
         $parents = parents::create([

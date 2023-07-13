@@ -38,7 +38,7 @@
                     </div>
                     <br>
                     <div class="panel-body no-padding">
-                        <input type="file" name="image" id="">
+                        <input type="file" name="attachment" id="">
                     </div>
                     <div class="panel-footer">
 

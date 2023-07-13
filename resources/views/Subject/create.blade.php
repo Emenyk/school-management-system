@@ -16,7 +16,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="review-content-section">
                                         <div id="dropzone1" class="pro-ad addcoursepro">
-                                            <form action="{{ route('subjects.store') }}" method="POST" enctype="multipart/form-data" class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                            <form action="{{ route('subjects.store') }}" method="POST" enctype="multipart/form-data"  id="demo1-upload">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -26,16 +26,9 @@
                                                         <div class="form-group">
                                                             <input name="code" id="finish" type="text" class="form-control" placeholder="Subject Code">
                                                         </div>
-
-                                                        <div class="form-group alert-up-pd">
-                                                            <div class="dz-message needsclick download-custom">
-                                                                <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                                                <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                                                <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                                                </p>
-                                                                <input name="image" class="hd-pro-img" type="text" />
-                                                            </div>
-                                                        </div>
+                                                        <br>
+                                                       
+                                                        <input type="file" name="image" id="">
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 

@@ -22,9 +22,9 @@ class StoreparentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'equired|string|max:255',
-            'email' => 'equired|string|email|max:255|unique:students',
-            'password' => 'equired|string|min:8|confirmed',
+            // 'name' => 'equired|string|max:255',
+            // 'email' => 'equired|string|email|max:255|unique:students',
+            // 'password' => 'equired|string|min:8|confirmed',
         ];
     }
 }

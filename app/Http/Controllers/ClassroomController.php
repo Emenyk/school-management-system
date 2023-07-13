@@ -29,7 +29,7 @@ class ClassroomController extends Controller
      */
     public function store(StoreclassroomRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

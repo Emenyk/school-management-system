@@ -19,7 +19,7 @@ class Teacher extends Authenticatable
         'gender',
         'address',
         'telephone',
-        'subject',
+        'subject_id',
         'image',
     ];
 

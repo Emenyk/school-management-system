@@ -15,6 +15,7 @@ class MarkController extends Controller
     }
 
     public function show(Request $request){
+        dd($request);
         return view('mark.show');
     }
 

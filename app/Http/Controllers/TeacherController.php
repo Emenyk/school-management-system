@@ -30,7 +30,7 @@ class TeacherController extends Controller
      */
     public function store(StoreteacherRequest $request)
     {
-
+        dd($request);
         $validatedData = $request->validated();
         $teacher = teacher::create([
             'name' => $validatedData['name'],

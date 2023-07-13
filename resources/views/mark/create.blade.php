@@ -9,11 +9,12 @@
                         <div class="basic-login-inner">
                             <h3>Add Mark</h3>
                             <p>select class and subject</p>
-                            <form action="#">
+                            <form action="{{ route('input.mark') }}" method="POST">
+                                @csrf
 
                                 <div class="form-select-list">
-                                    <select class="form-control custom-select-value" name="account">
-                                            <option>Type</option>
+                                    <select class="form-control custom-select-value" name="type">
+                                            <option>Exam Type</option>
                                             <option>Select 2</option>
                                             <option>Select 3</option>
                                             <option>Select 4</option>
@@ -21,8 +22,8 @@
                                 </div>
                                 <br>
                                 <div class="form-select-list">
-                                    <select class="form-control custom-select-value" name="account">
-                                            <option>class</option>
+                                    <select class="form-control custom-select-value" name="class">
+                                            <option>classroom</option>
                                             <option>Select 2</option>
                                             <option>Select 3</option>
                                             <option>Select 4</option>
@@ -30,7 +31,7 @@
                                 </div>
                                 <br>
                                 <div class="form-select-list">
-                                    <select class="form-control custom-select-value" name="account">
+                                    <select class="form-control custom-select-value" name="subject">
                                             <option>subject</option>
                                             <option>Select 2</option>
                                             <option>Select 3</option>
@@ -67,6 +68,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <form action="" method="POST">
                                         <tr>
                                             <td>1</td>
                                             <td><input type="number" name="mark" id="">
@@ -96,6 +98,7 @@
 
 
                                         </tr>
+                                    </form>
                                     </tbody>
                                 </table>
                             </div>

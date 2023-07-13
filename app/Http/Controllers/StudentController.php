@@ -33,6 +33,7 @@ class StudentController extends Controller
     public function store(StorestudentRequest $request)
     {
         // $validated_data = $request->validated();
+        dd($request);
         $student = Student::create([
 
             'name' => $request->name,
@@ -40,8 +41,7 @@ class StudentController extends Controller
             'password' => Hash::make($request->password,)
         ]);
 
-    $student = Student::all();
-    return dd($student);
+
 
 
 

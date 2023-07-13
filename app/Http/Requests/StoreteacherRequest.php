@@ -23,9 +23,9 @@ class StoreteacherRequest extends FormRequest
     {
         return [
 
-            'name' => 'equired|string|max:255',
-            'email' => 'equired|string|email|max:255|unique:students',
-            'password' => 'equired|string|min:8|confirmed',
+            // 'name' => 'equired|string|max:255',
+            // 'email' => 'equired|string|email|max:255|unique:students',
+            // 'password' => 'equired|string|min:8|confirmed',
 
         ];
     }

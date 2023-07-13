@@ -29,7 +29,7 @@ class SubjectController extends Controller
      */
     public function store(StoresubjectRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
