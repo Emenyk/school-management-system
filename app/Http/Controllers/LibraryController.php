@@ -29,19 +29,25 @@ class LibraryController extends Controller
      */
     public function store(StoreLibraryRequest $request)
     {
-        $file = $request->file('file');
-        $fileName = now().$file.$file->extension();
-        $file->move(public_path('files/libraries'), $fileName);
+        
+        $asset = new Library();
+        $asset->asset = $request->asset;
+        $asset->author = $request->author;
+        $asset->year = $request->year;
+        $asset->classroom = $request->classroom;
+        $asset->status = $request->status;
+        $asset->type = $request->type;
+        $asset->price = $request->price;
+        if ($request->hasFile('file')) {
 
-        $asset = Library::create([
-            'asset' => $request->asset,
-            'author' => $request->author,
-            'year' => $request->year,
-            'classroom' => $request->classroom,
-            'status' => $request->status,
-            'file' => $fileName
-        ]);
+            $file = $request->file('file');
+            $fileName = time().'.'.$file->extension();
+            $file->storeAs('public/images/libraries', $fileName);
+            $asset->file = $fileName;
 
+        }
+        $asset->save();
+        
         return redirect()->back();
 
     }

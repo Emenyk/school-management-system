@@ -7,8 +7,7 @@
                 <div class="product-payment-inner-st">
                     <ul id="myTabedu1" class="tab-review-design">
                         <li class="active"><a href="#description">Library Assets</a></li>
-
-
+                       
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
                         <div class="product-tab-list tab-pane fade active in" id="description">

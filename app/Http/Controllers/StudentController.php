@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -33,29 +34,33 @@ class StudentController extends Controller
      */
     public function store(StorestudentRequest $request)
     {
-        $image = $request->file('image');
-        $imageName = now().$image.$image->extension();
-        $image->move(public_path('images/students'), $imageName);
+        
+        $student = new Student();
+        $student->uniqueID = Str::random(10);
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->password = bcrypt($request->password);
+        $student->DOB = $request->DOB;
+        $student->gender = $request->gender;
+        $student->address = $request->address;
+        $student->telephone = $request->telephone;
+        $student->classroom = $request->classroom;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/students', $imageName);
+            $student->image = $imageName;
+        }
+        $student->save();
 
-        $student = Student::create([
-            'uniqueID' => Str::random(10),
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'DOB' => $request->DOB,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'telephone' => $request->telephone,
-            'classroom' => $request->classroom,
-            'image' => $imageName,
-        ]);
+        return response()->json([$student]);
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(student $student)
+    public function show(Student $student)
     {
         return view('student.show');
     }
@@ -63,7 +68,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(student $student)
+    public function edit(Student $student)
     {
         return view('student.edit');
     }
@@ -71,7 +76,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatestudentRequest $request, student $student)
+    public function update(UpdatestudentRequest $request, Student $student)
     {
         //
     }
@@ -79,7 +84,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(student $student)
+    public function destroy(Student $student)
     {
         //
     }

@@ -23,7 +23,7 @@
                                                         <input name="name" type="text" class="form-control" placeholder="Name">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input name="teacher" type="text" class="form-control" placeholder="Class teacher">
+                                                        <input name="classTeacher" type="text" class="form-control" placeholder="Class teacher">
                                                     </div>
 
                                                     <br>

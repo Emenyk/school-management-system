@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('libraries', function (Blueprint $table) {
+        Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->string('asset');
-            $table->string('author');
-            $table->integer('year');
-            $table->string('classroom');
-            $table->string('type');
-            $table->string('price');
-            $table->string('status');
-            $table->string('file')->nullable();
+            $table->string('grade');
             $table->timestamps();
         });
     }
@@ -30,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('libraries');
+        Schema::dropIfExists('marks');
     }
 };
-
-

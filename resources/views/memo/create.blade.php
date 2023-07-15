@@ -18,14 +18,14 @@
                                 <div class="form-group">
                                     <label class="col-lg-1 control-label text-left">To:</label>
                                     <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
-                                        <input name="reciever" type="text" class="form-control input-sm" placeholder="reciever ID ###">
+                                        <input name="reciever" type="number" class="form-control input-sm" placeholder="reciever ID ###">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-1 control-label text-left">Subject:</label>
                                     <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" class="form-control input-sm" placeholder="Subject">
+                                        <input type="text" name="subject" class="form-control input-sm" placeholder="Subject">
                                     </div>
                                 </div>
                             </div>

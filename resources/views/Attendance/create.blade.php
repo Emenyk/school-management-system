@@ -59,23 +59,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <form action="{{ route('student.attend') }}" method="POST" >
+                                        @csrf
                                         <tr>
                                             <td>1</td>
-                                            <td><input type="checkbox" name="mark" id="">
+                                            <td><input type="checkbox" value="1" name="marks[]" id="">
                                             </td>
                                             <td>Roshid</td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td><input type="checkbox" name="mark" id="">
+                                            <td><input type="checkbox" value="2" name="marks[]" id="">
                                             </td>
                                             <td>Khan</td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td><input type="checkbox" name="mark" id="" >
+                                            <td><input type="checkbox" value="13" name="marks[]" id="" >
                                             </td>
                                             <td>Shak</td>
                                             <td>..........</td>
@@ -88,6 +90,7 @@
 
 
                                         </tr>
+                                    </form>
                                     </tbody>
                                 </table>
                             </div>

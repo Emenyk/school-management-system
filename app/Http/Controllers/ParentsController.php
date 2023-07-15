@@ -31,29 +31,32 @@ class ParentsController extends Controller
      */
     public function store(StoreparentsRequest $request)
     {
-        $image = $request->file('image');
-        $imageName = now().$image.$image->extension();
-        $image->move(public_path('images/parents'), $imageName);
+        
+        $parents = new Parents();
+        $parents->uniqueID      =  Str::random(10);
+        $parents->name          =  $request->name;
+        $parents->email         =  $request->email;
+        $parents->password      =  bcrypt($request->password);
+        $parents->telephone     =  $request->telephone;
+        $parents->gender        =  $request->gender;
+        $parents->address       =  $request->address;
+        if ($request->hasFile('image')) {
 
-        $parents = Parents::create([
-            'uniqueID'      =>  Str::random(10),
-            'name'          =>  $request->name,
-            'email'         =>  $request->email,
-            'password'      =>  Hash::make($request->password),
-            'telephone'     =>  $request->telephone,
-            'gender'        =>  $request->gender,
-            'image'         =>  $imageName,
-            'address'       =>  $request->address,
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/parents', $imageName);
+            $parents->image = $imageName;
 
-        ]);
-
-        return redirect('/parents/login');
+        }
+        $parents->save();
+        
+        return redirect(route('student.login'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(parents $parents)
+    public function show(Parents $parents)
     {
 
     }
@@ -61,7 +64,7 @@ class ParentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(parents $parents)
+    public function edit(Parents $parents)
     {
         return view('parents.edit');
     }
@@ -69,7 +72,7 @@ class ParentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateparentsRequest $request, parents $parents)
+    public function update(UpdateparentsRequest $request, Parents $parents)
     {
         //
     }
@@ -77,7 +80,7 @@ class ParentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(parents $parents)
+    public function destroy(Parents $parents)
     {
         //
     }

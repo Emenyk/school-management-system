@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
-use App\Models\school\classroom;
+use App\Models\School\Classroom;
 use App\Http\Requests\StoreclassroomRequest;
 use App\Http\Requests\UpdateclassroomRequest;
 
@@ -30,17 +30,20 @@ class ClassroomController extends Controller
      */
     public function store(StoreclassroomRequest $request)
     {
-        $image = $request->file('image');
-        $imageName = now().$image.$image->extension();
-        $image->move(public_path('images/classrooms'), $imageName);
+        
+        $classroom = new Classroom();
+        $classroom->uniqueID = Str::random(10);
+        $classroom->name = $request->name;
+        $classroom->classTeacher = $request->classTeacher;
+        $classroom->status = $request->status;
+        if($request->hasFile('image')){
 
-        $classroom = Classroom::create([
-            'uniqueID' => Str::random(10),
-            'name' => $request->name,
-            'classTeacher' => $request->classTeacher,
-            'status' => $request->status,
-            'image' => $imageName
-        ]);
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/classrooms', $imageName);
+            $classroom->image = $imageName;
+        }
+        $classroom->save();
 
         return response()->json([
             'essage' => 'Classroom created successfully',

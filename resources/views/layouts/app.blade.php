@@ -185,14 +185,16 @@
                                                     <li class="nav-item">
                                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             @if (auth()->user())
-
-
                                                             <img src="img/product/pro4.jpg" alt="" />
                                                             <span class="admin-name">{{ Auth::user()->name }}</span>
                                                             @endif
                                                             @if(auth('student')->user())
                                                             <img src="img/product/pro4.jpg" alt="" />
                                                             <span class="admin-name">{{ auth('student')->user()->name }}</span>
+                                                            @endif
+                                                            @if(auth('teacher')->user())
+                                                            <img src="img/product/pro4.jpg" alt="" />
+                                                            <span class="admin-name">{{ auth('teacher')->user()->name }}</span>
                                                             @endif
                                                             @if(auth('parents')->user())
                                                             <img src="img/product/pro4.jpg" alt="" />
@@ -215,6 +217,10 @@
                                                             @endif
                                                             @if(auth('student')->user())
                                                             <li><a href="{{ route('student.logout') }}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                            </li>
+                                                            @endif
+                                                            @if(auth('teacher')->user())
+                                                            <li><a href="{{ route('teacher.logout') }}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                             </li>
                                                             @endif
                                                             @if(auth('parents')->user())

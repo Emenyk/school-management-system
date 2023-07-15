@@ -33,32 +33,32 @@ Route::get('/dashboard', function () {
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('dashboard')->group(function () {
+
     Route::resource('students', StudentController::class);
     Route::resource('subjects', SubjectController::class);
     Route::resource('classrooms', ClassroomController::class);
     Route::resource('teachers', TeacherController::class);
     Route::resource('parents', ParentsController::class);
     Route::resource('libraries', LibraryController::class);
+
     Route::get('memo', [MemoController::class, 'index'] )->name('memo.index');
     Route::get('memo/create', [MemoController::class, 'create'] )->name('memo.create');
     Route::post('memo/store', [MemoController::class, 'store'] )->name('memo.store');
     Route::get('memo/show', [MemoController::class, 'show'] )->name('memo.show');
+    Route::view('event', 'event.index')->name('event.index');
+    Route::get('inputMark', [MarkController::class, 'create'])->name('input.mark');
+    Route::post('inputMark', [MarkController::class, 'store'])->name('input.mark');
+    Route::get('checkResult', [MarkController::class, 'checkResult'])->name('result.check');
+    Route::post('checkResult', [MarkController::class, 'show'])->name('result.show');
+    Route::get('studentAttendance', [AttendanceController::class, 'create'])->name('student.attend');
+    Route::post('studentAttendance', [AttendanceController::class, 'store'])->name('student.attend');
+
 });
-
-
-
-Route::view('dashboard/event', 'event.index')->name('event.index');
-Route::get('dashboard/inputMark', [MarkController::class, 'create'])->name('input.mark');
-Route::get('dashboard/checkResult', [MarkController::class, 'checkResult'])->name('result.check');
-Route::post('dashboard/checkResult', [MarkController::class, 'show'])->name('result.show');
-Route::get('dashboard/studentAttendance', [AttendanceController::class, 'create'])->name('student.attend');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
 
 require __DIR__.'/auth.php';

@@ -61,32 +61,42 @@
                                 <table class="table sparkle-table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>Data</th>
+                                            <th>#</th>
                                             <th>User</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <form action="" method="POST">
+                                    <form action="{{ route('input.mark') }}" method="POST">
+                                        @csrf
                                         <tr>
-                                            <td>1</td>
-                                            <td><input type="number" name="mark" id="">
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="number" name="grades[]" placeholder="input data" class="form-control">
+                                                </div>
                                             </td>
+                                            <td>1</td>
                                             <td>Roshid</td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>2</td>
-                                            <td><input type="number" name="mark" id="">
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="number" name="grades[]" placeholder="input data" class="form-control">
+                                                </div>
                                             </td>
+                                            <td>2</td>
                                             <td>Khan</td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td>3</td>
-                                            <td><input type="number" name="mark" id="" >
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="number" name="grades[]" placeholder="input data" class="form-control">
+                                                </div>
                                             </td>
+                                            <td>3</td>
                                             <td>Shak</td>
                                             <td>..........</td>
                                         </tr>

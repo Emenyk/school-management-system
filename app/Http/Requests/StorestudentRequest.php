@@ -24,7 +24,7 @@ class StorestudentRequest extends FormRequest
         return [
             'uniqueID' => 'nullable|string|max:255|unique:students',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:students|max:255',
+            'email' => 'required|email|unique:students',
             'password' => 'required|string|min:8|max:255|confirmed',
             'DOB' => 'required|date',
             'gender' => 'required|in:male,female',

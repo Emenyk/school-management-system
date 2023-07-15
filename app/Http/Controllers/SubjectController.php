@@ -29,16 +29,18 @@ class SubjectController extends Controller
      */
     public function store(StoresubjectRequest $request)
     {
-        $image = $request->file('image');
-        $imageName = now().$image.$image->extension();
-        $image->move(public_path('images/subjects'), $imageName);
-
-        $subject = Subject::create([
-            'name' => $request->name,
-            'code' => $request->code,
-            'image' => $imageName,
-            'description' => $request->description,
-        ]);
+        
+        $subject = new Subject();
+        $subject->name = $request->name;
+        $subject->code = $request->code;
+        $subject->description = $request->description;
+        if ($request->hasFile('image')) { 
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/subjects', $imageName);
+            $subject->image = $imageName;
+        }
+        $subject->save();
 
         return response()->json($subject);
 

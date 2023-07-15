@@ -25,10 +25,11 @@ class StoreparentsRequest extends FormRequest
 
             'uniqueID' => 'nullable|unique:parents|max:255',
             'name' => 'required|max:255',
-            'email' => 'required|string|email|unique:parents|max:255',
+            'email' => 'required|email|unique:parents|max:255',
             'password' => 'required|string|min:8|confirmed',
             'telephone' => 'required|max:255',
             'gender' => 'required|max:255',
+            'child' => 'nullable',
             'address' => 'required|max:255',
             'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
 

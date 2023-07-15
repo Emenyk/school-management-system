@@ -31,12 +31,12 @@ Route::middleware('guest')->group(function () {
     // teachers login/logout
     Route::get('/teachers/login', [SchoolLoginsTeacherLoginController::class, 'create'])->name('teacher.login');
     Route::post('/teachers/login', [SchoolLoginsTeacherLoginController::class, 'store'])->name('teacher.login');
-    Route::post('/teachers/logout', [SchoolLoginsTeacherLoginController::class, 'logout'])->name('teacher.logout');
+    Route::get('/teachers/logout', [SchoolLoginsTeacherLoginController::class, 'logout'])->name('teacher.logout');
 
     // parents login/logout
     Route::get('/parents/login', [SchoolLoginsParentsLoginController::class, 'create'])->name('parents.login');
     Route::post('/parents/login', [SchoolLoginsParentsLoginController::class, 'store'])->name('parents.login');
-    Route::post('/parents/logout', [SchoolLoginsParentsLoginController::class, 'logout'])->name('parents.logout');
+    Route::get('/parents/logout', [SchoolLoginsParentsLoginController::class, 'logout'])->name('parents.logout');
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');

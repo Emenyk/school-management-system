@@ -39,7 +39,7 @@ class StoreteacherRequest extends FormRequest
             'gender' => 'required|in:male,female',
             'address' => 'required|string|max:255',
             'telephone' => 'required|string|max:20',
-            'subject_id' => 'required|integer',
+            'subject_id' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
         ];
     }

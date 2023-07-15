@@ -30,7 +30,7 @@
                                                                 <input name="address" type="address" class="form-control" placeholder="Address">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="telephone" type="tel" class="form-control" placeholder="Mobile number">
+                                                                <input name="telephone" type="text" class="form-control" placeholder="Mobile number">
                                                             </div>
                                                             <br>
                                                             <i>parent image</i>
@@ -41,23 +41,23 @@
                                                             <div class="form-group">
                                                                 <select name="child" class="form-control">
                                                                         <option value="none" selected="" disabled="">Select child</option>
-                                                                        <option value="0">Nigeria</option>
-                                                                        <option value="1">Others</option>
+                                                                        <option value="child1">child1</option>
+                                                                        <option value="child2">child2</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <select name="gender" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select Gender</option>
-                                                                    <option value="0">Male</option>
-                                                                    <option value="1">Female</option>
+                                                                    <option value="male">Male</option>
+                                                                    <option value="female">Female</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="password" name="password" class="form-control" placeholder="Password">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                                                                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                                                             </div>
                                                         </div>
                                                     </div>

@@ -38,28 +38,28 @@
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
-                                                                <input name="DOB" id="finish" type="text" class="form-control" placeholder="Date of Birth">
+                                                                <input name="DOB" id="finish" type="date" class="form-control" placeholder="Date of Birth">
                                                             </div>
                                                             <div class="form-group">
-                                                                <select name="subject" class="form-control">
+                                                                <select name="subject_id" class="form-control">
                                                                         <option value="none" selected="" disabled="">Select subject</option>
-                                                                        <option value="0">Nigeria</option>
-                                                                        <option value="1">Others</option>
+                                                                        <option value="subject">English</option>
+                                                                        <option value="subject">Literature</option>
                                                                 </select>
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <select name="gender" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select Gender</option>
-                                                                    <option value="0">Male</option>
-                                                                    <option value="1">Female</option>
+                                                                    <option value="male">male</option>
+                                                                    <option value="female">female</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="password" name="password" class="form-control" placeholder="Password">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                                                                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
                                                             </div>
                                                         </div>
                                                     </div>

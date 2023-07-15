@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->string('subject_id');
             $table->rememberToken();
             $table->timestamps();
         });

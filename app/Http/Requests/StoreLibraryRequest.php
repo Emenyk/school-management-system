@@ -28,6 +28,8 @@ class StoreLibraryRequest extends FormRequest
             'year' => 'required|integer|min:1900|max:2023',
             'classroom' => 'required|string|max:255',
             'status' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'price' => 'required|string|max:255',
             'file' => 'nullable|file',
         ];
 

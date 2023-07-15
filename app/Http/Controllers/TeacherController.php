@@ -31,26 +31,29 @@ class TeacherController extends Controller
      */
     public function store(StoreteacherRequest $request)
     {
-        $image = $request->file('image');
-        $imageName = now().$image.$image->extension();
-        $image->move(public_path('images/teachers'), $imageName);
-
+        
         // Create a new user instance using the validated data
-        $teacher = Teacher::create([
-            'uniqueID' => Str::random(10),
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'DOB' => $request->DOB,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'telephone' => $request->telephone,
-            'image' => $imageName,
-            'subject_id' => $request->subject_id,
-        ]);
-
+        $teacher = new Teacher();
+        $teacher->uniqueID = Str::random(10);
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->password = bcrypt($request->password);
+        $teacher->DOB = $request->DOB;
+        $teacher->gender = $request->gender;
+        $teacher->address = $request->address;
+        $teacher->telephone = $request->telephone;
+        if ($request->hasFile('image')) {
+            
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/teachers', $imageName);
+            $teacher->image = $imageName;
+        }
+        $teacher->subject_id = $request->subject_id;
+        $teacher->save();
+        
         // Redirect the user to a success page
-        return redirect()->route('dashboard')->with('success', 'teacher created successfully.');
+        return redirect()->back();
 
     }
 

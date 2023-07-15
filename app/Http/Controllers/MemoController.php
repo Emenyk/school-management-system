@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Memo;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class MemoController extends Controller
 {
@@ -15,7 +17,27 @@ class MemoController extends Controller
     }
 
     public function store(Request $request){
-        dd($request);
+        $validateData = $request->validate([
+            'reciever' => 'required|integer',
+            'subject' => 'required|string',
+            'body' => 'required|string',
+     
+        ]);
+
+        $memo = new Memo();
+        $memo->subject = $validateData['subject'];
+        $memo->body = $validateData['body'];
+        $memo->reciever = $validateData['reciever'];
+        if ($request->hasFile('attachment')) {
+
+            $attachment = $request->file('attachment');
+            $attachmentName = time().'.'.$attachment->extension();
+            $attachment->storeAs('public/memos', $attachmentName);
+            $memo->attachment = $attachmentName;
+        }
+        $memo->save();
+
+        return response()->json($memo);
     }
 
     public function show(){
