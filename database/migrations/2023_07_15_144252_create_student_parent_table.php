@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('student_parent', function (Blueprint $table) {
             $table->id();
-            $table->boolean('attend');
+            $table->foreignId('student_id')->nullable();
+            $table->foreignId('parents_id')->nullable();
             $table->timestamps();
+
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('student_parent');
     }
 };

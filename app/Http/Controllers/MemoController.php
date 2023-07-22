@@ -21,7 +21,7 @@ class MemoController extends Controller
             'reciever' => 'required|integer',
             'subject' => 'required|string',
             'body' => 'required|string',
-     
+
         ]);
 
         $memo = new Memo();
@@ -37,12 +37,13 @@ class MemoController extends Controller
         }
         $memo->save();
 
-        return response()->json($memo);
+        return redirect()->back()->with('success', 'Teacher updated successfully!');
     }
 
-    public function show(){
-        return view('memo.show');
+    public function show(Memo $memo){
+        return view('memo.show', [
+            'memo' => $memo
+        ]);
     }
-
-
+    
 }

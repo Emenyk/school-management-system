@@ -22,7 +22,6 @@ class StoreclassroomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uniqueID' => 'nullable|unique:classroom,uniqueID',
             'name' => 'required|string|max:255',
             'classTeacher' => 'required',
             'status' => 'required',

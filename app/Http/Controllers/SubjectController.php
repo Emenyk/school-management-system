@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\school\subject;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoresubjectRequest;
 use App\Http\Requests\UpdatesubjectRequest;
 
@@ -29,12 +30,11 @@ class SubjectController extends Controller
      */
     public function store(StoresubjectRequest $request)
     {
-        
+
         $subject = new Subject();
         $subject->name = $request->name;
-        $subject->code = $request->code;
         $subject->description = $request->description;
-        if ($request->hasFile('image')) { 
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time().'.'.$image->extension();
             $image->storeAs('public/images/subjects', $imageName);
@@ -42,7 +42,7 @@ class SubjectController extends Controller
         }
         $subject->save();
 
-        return response()->json($subject);
+        return redirect()->back()->with('success', 'Subject saved successfully!');
 
     }
 
@@ -51,7 +51,9 @@ class SubjectController extends Controller
      */
     public function show(subject $subject)
     {
-        return view('Subject.show');
+        return view('Subject.show', [
+            'subject' => $subject
+        ]);
     }
 
     /**
@@ -59,7 +61,9 @@ class SubjectController extends Controller
      */
     public function edit(subject $subject)
     {
-        return view('Subject.edit');
+        return view('Subject.edit', [
+            'subject' => $subject
+        ]);
     }
 
     /**
@@ -67,7 +71,22 @@ class SubjectController extends Controller
      */
     public function update(UpdatesubjectRequest $request, subject $subject)
     {
-        //
+        $subject->name = $request->name;
+        $subject->description = $request->description;
+         if ($request->hasFile('image')) {
+            // Delete the previous image if it exists
+            if ($subject->image) {
+                Storage::delete('public/images/subjects/' . $subject->image);
+            }
+             $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/subjects', $imageName);
+            $subject->image = $imageName;
+
+        }$subject->update();
+         // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Subject updated successfully!');
+
     }
 
     /**
@@ -75,6 +94,17 @@ class SubjectController extends Controller
      */
     public function destroy(subject $subject)
     {
-        //
+        // Delete the associated image if it exists
+        if ($subject->image) {
+            Storage::delete('public/images/subjects/' . $subject->image);
+        }
+        $subject->delete();
+        // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Subject deleted successfully!');
+
     }
 }
+
+
+
+

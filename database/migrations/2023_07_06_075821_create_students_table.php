@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('uniqueID')->unique();
             $table->date('DOB');
             $table->string('gender');
             $table->string('address');
             $table->string('telephone');
-            $table->string('classroom');
             $table->string('image')->nullable();
+            $table->foreignId('classroom_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -34,6 +34,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('students', function(Blueprint $table){
+            $table->dropForeign('students_classroom_id_foreign');
+
+        });
         Schema::dropIfExists('students');
     }
 };

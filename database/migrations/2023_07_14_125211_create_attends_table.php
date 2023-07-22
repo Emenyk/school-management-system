@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('attends', function (Blueprint $table) {
             $table->id();
-            $table->string('mark');
+            $table->string('subject')->nullable();
+            $table->foreignID('student_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
@@ -23,6 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('attends', function(Blueprint $table){
+            $table->dropForeign('attends_student_id_foreign');
+
+        });
         Schema::dropIfExists('attends');
     }
 };

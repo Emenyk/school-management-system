@@ -22,7 +22,6 @@ class StorestudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uniqueID' => 'nullable|string|max:255|unique:students',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:students',
             'password' => 'required|string|min:8|max:255|confirmed',
@@ -30,7 +29,7 @@ class StorestudentRequest extends FormRequest
             'gender' => 'required|in:male,female',
             'address' => 'required|string|max:255',
             'telephone' => 'required|string|max:20',
-            'classroom' => 'required|string|max:255',
+            'classroom_id' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
         ];
     }

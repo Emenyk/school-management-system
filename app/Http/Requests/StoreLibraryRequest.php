@@ -24,13 +24,14 @@ class StoreLibraryRequest extends FormRequest
 
         return [
             'asset' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'year' => 'required|integer|min:1900|max:2023',
-            'classroom' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'price' => 'required|string|max:255',
+            'author' => 'nullable|string|max:255',
+            'year' => 'nullable|integer|min:1900|max:2023',
+            'classroom' => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255',
+            'price' => 'nullable|string|max:255',
             'file' => 'nullable|file',
+            
         ];
 
     }

@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('marks', function (Blueprint $table) {
+        Schema::create('student_subject', function (Blueprint $table) {
             $table->id();
-            $table->string('session');
-            $table->string('type');
-            $table->integer('mark');
             $table->foreignId('student_id')->nullable()->constrained();
             $table->foreignId('subject_id')->nullable()->constrained();
-
             $table->timestamps();
         });
     }
@@ -28,11 +24,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('marks', function(Blueprint $table){
-            $table->dropForeign('marks_student_id_foreign');
-            $table->dropForeign('marks_subject_id_foreign');
+        Schema::table('student_subject', function(Blueprint $table){
+            $table->dropForeign('student_subject_student_id_foreign');
+            $table->dropForeign('student_subject_subject_id_foreign');
 
         });
-        Schema::dropIfExists('marks');
+        Schema::dropIfExists('student_subject');
     }
 };

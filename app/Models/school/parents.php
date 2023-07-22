@@ -2,23 +2,23 @@
 
 namespace App\Models\School;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\School\Student;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Parents extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'uniqueID',
         'name',
         'email',
         'password',
         'telephone',
         'gender',
         'address',
-        'student_id'
     ];
 
     protected $hidden = [
@@ -29,4 +29,10 @@ class Parents extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function students():BelongsToMany
+    {
+        return $this->belongsToMany(Student::class, 'student_parent');
+    }
+
 }

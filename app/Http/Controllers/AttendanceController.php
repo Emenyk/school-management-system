@@ -2,23 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\School\Attend;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\School\Attend;
+use App\Models\School\Classroom;
 
 class AttendanceController extends Controller
 {
+    public function getStudents(Request $request){
+
+        $classroomId = $request->classroom;
+        $classroom = Classroom::find($classroomId);
+         if ($classroom) {
+            $students = $classroom->students;
+            $subjects = $classroom->subjects;
+            return view('Attendance.show', [
+                'students' => $students,
+                'subjects' => $subjects
+            ]);
+        }
+        return redirect()->back()->with('error', 'Invalid classroom selected.');
+    }
+
     public function create(){
-        return view('Attendance.create');
+        $classrooms = Classroom::all();
+        return view('Attendance.create', [
+            'classrooms' => $classrooms
+        ]);
     }
 
     public function store(Request $request){
-        
-        $marks = $request->input('marks');
+        $marks = $request->marks;
         foreach ($marks as $key => $mark) {
             $attendance = new Attend();
-            $attendance->mark = $mark;
+            $attendance->subject = $request->subject;
+            $attendance->student_id = $mark;
+            $attendance->save();
         }
 
-        return response()->json($attendance);
+        return redirect()->route('student.attend')->with('success', 'attendance saved successfully!');
     }
 }

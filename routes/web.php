@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MemoController;
@@ -27,9 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('dashboard')->group(function () {
@@ -48,10 +47,12 @@ Route::prefix('dashboard')->group(function () {
     Route::view('event', 'event.index')->name('event.index');
     Route::get('inputMark', [MarkController::class, 'create'])->name('input.mark');
     Route::post('inputMark', [MarkController::class, 'store'])->name('input.mark');
+    Route::post('recordAssessment', [MarkController::class, 'recordMark'])->name('record.mark');
     Route::get('checkResult', [MarkController::class, 'checkResult'])->name('result.check');
     Route::post('checkResult', [MarkController::class, 'show'])->name('result.show');
     Route::get('studentAttendance', [AttendanceController::class, 'create'])->name('student.attend');
-    Route::post('studentAttendance', [AttendanceController::class, 'store'])->name('student.attend');
+    Route::post('attendanceStore', [AttendanceController::class, 'store'])->name('attendance.store');
+    Route::post('markAttendance', [AttendanceController::class, 'getStudents'])->name('Mark.attendance');
 
 });
 

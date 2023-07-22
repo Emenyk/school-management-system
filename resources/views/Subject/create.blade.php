@@ -23,11 +23,8 @@
                                                         <div class="form-group">
                                                             <input name="name" type="text" class="form-control" placeholder="Subject Name">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input name="code" id="finish" type="text" class="form-control" placeholder="Subject Code">
-                                                        </div>
                                                         <br>
-                                                       
+                                                        <i>subject image</i>
                                                         <input type="file" name="image" id="">
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

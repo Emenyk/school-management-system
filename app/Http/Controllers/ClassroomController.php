@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use App\Models\School\Classroom;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreclassroomRequest;
 use App\Http\Requests\UpdateclassroomRequest;
 
@@ -30,9 +31,8 @@ class ClassroomController extends Controller
      */
     public function store(StoreclassroomRequest $request)
     {
-        
+
         $classroom = new Classroom();
-        $classroom->uniqueID = Str::random(10);
         $classroom->name = $request->name;
         $classroom->classTeacher = $request->classTeacher;
         $classroom->status = $request->status;
@@ -45,10 +45,7 @@ class ClassroomController extends Controller
         }
         $classroom->save();
 
-        return response()->json([
-            'essage' => 'Classroom created successfully',
-            'classroom' => $classroom
-        ], 201);
+        return redirect()->back()->with('success', 'Classroom saved successfully!');
 
     }
 
@@ -57,6 +54,9 @@ class ClassroomController extends Controller
      */
     public function show(classroom $classroom)
     {
+        return view('classroom.show', [
+            'classroom' => $classroom
+        ]);
 
     }
 
@@ -65,7 +65,9 @@ class ClassroomController extends Controller
      */
     public function edit(classroom $classroom)
     {
-        return view('classroom.edit');
+        return view('classroom.edit', [
+            'classroom' => $classroom
+        ]);
     }
 
     /**
@@ -73,7 +75,18 @@ class ClassroomController extends Controller
      */
     public function update(UpdateclassroomRequest $request, classroom $classroom)
     {
-        //
+        $classroom->name = $request->name;
+        $classroom->classTeacher = $request->classTeacher;
+        $classroom->status = $request->status;
+         if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->putFileAs('public/images/classrooms', $image, $imageName);
+            $classroom->image = $imageName;
+        }
+         $classroom->update();
+        // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Classroom updated successfully!');
     }
 
     /**
@@ -81,6 +94,13 @@ class ClassroomController extends Controller
      */
     public function destroy(classroom $classroom)
     {
-        //
+        // Delete the associated image file if it exists
+        if ($classroom->image) {
+            Storage::delete('public/images/classrooms/' . $classroom->image);
+        }
+        $classroom->delete();
+         // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Classroom deleted successfully!');
+
     }
 }

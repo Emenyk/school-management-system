@@ -17,7 +17,12 @@ class subjectFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
+            'name' => fake()->name(),
+            'image' => null, // Replace null with your desired default image path if needed
+            'description' => fake()->text(),
         ];
     }
 }
+
+

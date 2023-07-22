@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\School\Parents;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreparentsRequest;
 use App\Http\Requests\UpdateparentsRequest;
 
@@ -31,9 +32,8 @@ class ParentsController extends Controller
      */
     public function store(StoreparentsRequest $request)
     {
-        
+
         $parents = new Parents();
-        $parents->uniqueID      =  Str::random(10);
         $parents->name          =  $request->name;
         $parents->email         =  $request->email;
         $parents->password      =  bcrypt($request->password);
@@ -49,7 +49,7 @@ class ParentsController extends Controller
 
         }
         $parents->save();
-        
+
         return redirect(route('student.login'));
     }
 
@@ -58,7 +58,9 @@ class ParentsController extends Controller
      */
     public function show(Parents $parents)
     {
-
+        return view('parents.show', [
+            'parents' => $parents
+        ]);
     }
 
     /**
@@ -66,7 +68,9 @@ class ParentsController extends Controller
      */
     public function edit(Parents $parents)
     {
-        return view('parents.edit');
+        return view('parents.edit', [
+            'parents' => $parents
+        ]);
     }
 
     /**
@@ -74,7 +78,25 @@ class ParentsController extends Controller
      */
     public function update(UpdateparentsRequest $request, Parents $parents)
     {
-        //
+        $parents->name = $request->name;
+        $parents->email = $request->email;
+        $parents->password = bcrypt($request->password);
+        $parents->telephone = $request->telephone;
+        $parents->gender = $request->gender;
+        $parents->address = $request->address;
+         if ($request->hasFile('image')) {
+            // Delete the previous image if it exists
+            if ($parents->image) {
+                Storage::delete('public/images/parents/' . $parents->image);
+            }
+             $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/images/parents', $imageName);
+            $parents->image = $imageName;
+        }
+         $parents->update();
+         // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Parents updated successfully!');
     }
 
     /**
@@ -82,6 +104,15 @@ class ParentsController extends Controller
      */
     public function destroy(Parents $parents)
     {
-        //
+        // Delete the associated image if it exists
+        if ($parents->image) {
+            Storage::delete('public/images/parents/' . $parents->image);
+        }
+        $parents->delete();
+        // You can add any additional logic or redirect here if needed
+        return redirect()->back()->with('success', 'Parents deleted successfully!');
+
     }
 }
+
+

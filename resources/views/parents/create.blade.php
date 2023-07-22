@@ -29,23 +29,12 @@
                                                             <div class="form-group">
                                                                 <input name="address" type="address" class="form-control" placeholder="Address">
                                                             </div>
-                                                            <div class="form-group">
-                                                                <input name="telephone" type="text" class="form-control" placeholder="Mobile number">
-                                                            </div>
                                                             <br>
                                                             <i>parent image</i>
                                                             <input type="file" name="image" id="">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                                            <div class="form-group">
-                                                                <select name="child" class="form-control">
-                                                                        <option value="none" selected="" disabled="">Select child</option>
-                                                                        <option value="child1">child1</option>
-                                                                        <option value="child2">child2</option>
-                                                                </select>
-                                                            </div>
-
+                                                            
                                                             <div class="form-group">
                                                                 <select name="gender" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select Gender</option>
@@ -53,6 +42,10 @@
                                                                     <option value="female">Female</option>
                                                                 </select>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <input name="telephone" type="text" class="form-control" placeholder="Mobile number">
+                                                            </div>
+                                                                
                                                             <div class="form-group">
                                                                 <input type="password" name="password" class="form-control" placeholder="Password">
                                                             </div>

@@ -41,10 +41,10 @@
                                                             <input name="DOB" id="finish" type="date" class="form-control" placeholder="Date of Birth">
                                                         </div>
                                                         <div class="form-group">
-                                                            <select name="classroom" class="form-control">
+                                                            <select name="classroom_id" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select classroom</option>
-                                                                    <option value="jss1">jss1</option>
-                                                                    <option value="jss2">jss2</option>
+                                                                    <option value="1">jss1</option>
+                                                                    <option value="2">jss2</option>
                                                             </select>
                                                         </div>
 

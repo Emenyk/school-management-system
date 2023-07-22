@@ -17,6 +17,8 @@ class Library extends Model
         'classroom',
         'file',
         'status',
+        'price',
+        'type',
 
     ];
 }

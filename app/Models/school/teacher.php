@@ -2,9 +2,11 @@
 
 namespace App\Models\School;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\School\Subject;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Teacher extends Authenticatable
 {
@@ -14,7 +16,6 @@ class Teacher extends Authenticatable
         'name',
         'email',
         'password',
-        'uniqueID',
         'DOB',
         'gender',
         'address',
@@ -31,4 +32,10 @@ class Teacher extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function subjects():HasMany
+    {
+        return $this->hasMany(Subject::class);
+    }
+
 }

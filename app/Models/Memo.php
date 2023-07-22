@@ -10,7 +10,6 @@ class Memo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uniqueID',
         'subject',
         'body',
         'attachment',

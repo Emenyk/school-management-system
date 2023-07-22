@@ -22,16 +22,6 @@ class StoreteacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            // 'name' => 'equired|string|max:255',
-            // 'email' => 'equired|string|email|max:255|unique:students',
-            // 'password' => 'equired|string|min:8|confirmed',
-
-
-
-        ];
-        return [
-            'uniqueID' => 'nullable|string|max:255|unique:teachers',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:teachers|max:255',
             'password' => 'required|string|min:8|confirmed',
@@ -39,7 +29,6 @@ class StoreteacherRequest extends FormRequest
             'gender' => 'required|in:male,female',
             'address' => 'required|string|max:255',
             'telephone' => 'required|string|max:20',
-            'subject_id' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,png,jpg|max:2048',
         ];
     }

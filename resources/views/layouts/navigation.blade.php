@@ -6,8 +6,14 @@
    <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="{{ asset('app/img/logo/logo.png') }}" alt="" /></a>
-            <strong><a href="index.html"><img src="{{ asset('app/img/logo/logosn.png') }}" alt="" /></a></strong>
+            <a href="/">
+                {{-- <img class="main-logo" src="{{ asset('app/img/logo/logo.png') }}" alt="" /> --}}
+            </a>
+            <strong>
+                <a href="/">
+                    <img src="{{ asset('app/img/logo/logosn.png') }}" alt="" />
+                </a>
+            </strong>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -42,6 +48,7 @@
                             <li><a title="Add teacher" href="{{ route('teachers.create') }}"><span class="mini-sub-pro">Add teacher</span></a></li>
                         </ul>
                     </li>
+
                     <li>
                         <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Parent</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
@@ -63,6 +70,8 @@
                             <li><a title="Add Class" href="{{ route('classrooms.create') }}"><span class="mini-sub-pro">Add class</span></a></li>
                         </ul>
                     </li>
+                    @can('isStudent')
+
                     <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
@@ -70,6 +79,10 @@
                             <li><a title="Add Library" href="{{ route('libraries.create') }}"><span class="mini-sub-pro">Add Library Asset</span></a></li>
                         </ul>
                     </li>
+                    @endcan
+                    @can('isAdmin')
+
+
                     <li>
                         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Memo</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
@@ -78,7 +91,7 @@
                             <li><a title="Compose Memo" href="{{ route('memo.create') }}"><span class="mini-sub-pro">Compose</span></a></li>
                         </ul>
                     </li>
-
+                    @endcan
                 </ul>
             </nav>
         </div>

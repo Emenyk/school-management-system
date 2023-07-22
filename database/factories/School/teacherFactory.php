@@ -17,7 +17,18 @@ class teacherFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+  
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => bcrypt('password'), // Replace 'password' with your desired default password
+            'DOB' => fake()->date(),
+            'gender' => fake()->randomElement(['male', 'female']),
+            'address' => fake()->address(),
+            'telephone' => fake()->phoneNumber(),
+            'image' => null, // Replace null with your desired default image path if needed
+
         ];
     }
 }
+
+
