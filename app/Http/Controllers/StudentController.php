@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\School\Student;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StorestudentRequest;
 use App\Http\Requests\UpdatestudentRequest;
-use Illuminate\Support\Facades\Storage;
+use App\Models\School\Classroom;
 
 class StudentController extends Controller
 {
@@ -15,7 +17,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('student.index');
+        $students = Student::with('classroom')->select('id', 'name', 'gender', 'image', 'DOB', DB::raw('TIMESTAMPDIFF(YEAR, DOB, CURDATE()) AS age'))->get();
+        return view('student.index', [
+            'students' => $students
+        ]);
     }
 
     /**
@@ -23,7 +28,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
+        $classrooms = Classroom::all();
+        return view('student.create', [
+            'classrooms' => $classrooms
+        ]);
     }
 
     /**
@@ -58,9 +66,12 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        $classrooms = Classroom::all();
         return view('student.show', [
-            'student' => $student
+            'student' => $student,
+            'classrooms' => $classrooms
         ]);
+
     }
 
     /**
@@ -98,7 +109,7 @@ class StudentController extends Controller
 
         }$student->update();
 
-        return redirect()->back()->with('success', 'Student updated successfully!');
+        return redirect()->route('students.index')->with('success', 'Student updated successfully!');
 
     }
 
@@ -113,7 +124,7 @@ class StudentController extends Controller
         }
         $student->delete();
         // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Student deleted successfully!');
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
 
     }
 }

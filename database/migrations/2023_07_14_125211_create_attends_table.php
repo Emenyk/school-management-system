@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('attends', function (Blueprint $table) {
             $table->id();
             $table->string('subject')->nullable();
-            $table->foreignID('student_id')->nullable()->constrained();
+            $table->foreignID('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

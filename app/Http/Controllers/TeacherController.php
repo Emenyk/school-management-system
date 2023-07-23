@@ -16,7 +16,10 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('teacher.index');
+        $teachers = Teacher::all();
+        return view('teacher.index', [
+            'teachers' => $teachers
+        ]);
     }
 
     /**
@@ -113,7 +116,7 @@ class TeacherController extends Controller
         }
         $teacher->delete();
         // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Teacher deleted successfully!');
+        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully!');
     }
 
 }

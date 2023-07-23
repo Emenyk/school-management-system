@@ -43,8 +43,12 @@
                                                         <div class="form-group">
                                                             <select name="classroom_id" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select classroom</option>
-                                                                    <option value="1">jss1</option>
-                                                                    <option value="2">jss2</option>
+                                                                    @if ($classrooms)
+                                                                        @foreach ($classrooms as $classroom)
+                                                                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                                                        @endforeach
+                                                                    @endif
+
                                                             </select>
                                                         </div>
 
@@ -52,7 +56,7 @@
                                                             <select name="gender" class="form-control">
                                                                 <option value="none" selected="" disabled="">Select Gender</option>
                                                                 <option value="male">male</option>
-                                                                <option value="male">female</option>
+                                                                <option value="female">female</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->string('image')->nullable();
-            $table->foreignId('classroom_id')->nullable()->constrained();
+            $table->foreignId('classroom_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,10 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('students', function(Blueprint $table){
-            $table->dropForeign('students_classroom_id_foreign');
 
-        });
         Schema::dropIfExists('students');
     }
 };

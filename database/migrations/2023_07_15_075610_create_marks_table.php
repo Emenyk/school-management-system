@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('session');
             $table->string('type');
             $table->integer('mark');
-            $table->foreignId('student_id')->nullable()->constrained();
-            $table->foreignId('subject_id')->nullable()->constrained();
+            $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
