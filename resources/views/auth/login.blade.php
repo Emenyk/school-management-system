@@ -1,47 +1,49 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<!DOCTYPE html>
+<html class="no-js"  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SMS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <x-head_links/>
+    </head>
+    <body>
+        <div class="error-pagewrap">
+            <div class="error-page-int">
+                <div class="text-center m-b-md custom-login">
+                    <h3>ADMIN LOGIN PAGE</h3>
+                    <p>This is the best school ever!</p>
+                </div>
+                <div class="content-error">
+                    <div class="hpanel">
+                        <div class="panel-body">
+                            <form action="{{ route('login') }}" method="POST" id="loginForm">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <input id="email" type="email" placeholder="example@gmail.com" title="Please enter you email" required name="email" id="email" class="form-control">
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="password">Password</label>
+                                    <input id="password" type="password" title="Please enter your password" placeholder="******" required name="password" id="password" class="form-control">
+
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                </div>
+                                <button class="btn btn-success btn-block loginbtn">Login</button>
+                                <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center login-footer">
+                    <p>Copyright © 2023. All rights reserved. Contact us <a href="#">SMSN</a></p>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <x-javascript_links/>
+    </body>
+</html>

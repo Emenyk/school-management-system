@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
         Subject::factory(10)->create();
         Parents::factory(10)->create();
         Library::factory(10)->create();
-        Attend::factory(10)->create();
+        Attend::factory(4)->create();
         Mark::factory(10)->create([
             'subject_id' => 4
         ]);
+        
 
         $student = Student::find(1);
         $student->classroom_id = 1;

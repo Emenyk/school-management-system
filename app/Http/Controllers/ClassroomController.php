@@ -15,7 +15,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        return view('classroom.index');
+        return view('classroom.index', [
+            'classrooms' => Classroom::paginate(5)
+        ]);
     }
 
     /**
@@ -100,7 +102,7 @@ class ClassroomController extends Controller
         }
         $classroom->delete();
          // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Classroom deleted successfully!');
+        return redirect()->route('classrooms.index')->with('success', 'Classroom deleted successfully!');
 
     }
 }

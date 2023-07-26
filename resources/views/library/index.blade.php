@@ -6,127 +6,50 @@
                 <div class="product-status-wrap">
                     <h4>Library List</h4>
                     <div class="add-product">
-                        <a href="#">Add Library</a>
+                        <a href="{{ route('libraries.create') }}">Add Library</a>
                     </div>
                     <div class="asset-inner">
                         <table>
                             <tr>
                                 <th>No</th>
-                                <th>Image</th>
+                                <th>File</th>
                                 <th>Name of Asset</th>
                                 <th>Status</th>
-                                <th>Subject</th>
-                                <th>Department</th>
+                                <th>Author</th>
+                                <th>Class</th>
                                 <th>Type</th>
                                 <th>Price</th>
                                 <th>Setting</th>
                             </tr>
+                            @foreach ($libraries as $key => $library)
+
                             <tr>
-                                <td>1</td>
-                                <td><img src="img/product/book-1.jpg" alt="" /></td>
-                                <td>Web Development Book</td>
+                                <td>{{ $key }}</td>
+                                <td><img src="{{ asset('app/img/product/book-1.jpg') }}" alt="" /></td>
+                                <td>{{ $library->asset }}</td>
                                 <td>
-                                    <button class="pd-setting">Active</button>
+                                    <button class="pd-setting">{{ $library->status }}</button>
                                 </td>
-                                <td>Html, Css</td>
-                                <td>CSE</td>
-                                <td>Book</td>
-                                <td>$1500</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <td>{{ $library->author }}</td>
+                                <td>{{ $library->classroom ?? 'unspecified' }}</td>
+                                <td>{{ $library->type ?? 'Nah' }}</td>
+                                <td>{{ $library->price ?? 'Nah' }}</td>
+                                <td style="display: flex">
+                                    <a href="{{ route('libraries.edit', ['library' => $library]) }}">
+                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    </a>
+                                    <form action="{{ route('libraries.destroy', ['library' => $library]) }}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><img src="img/product/book-2.jpg" alt="" /></td>
-                                <td>Quality Bol pen</td>
-                                <td>
-                                    <button class="ps-setting">Paused</button>
-                                </td>
-                                <td>PHP</td>
-                                <td>CSE</td>
-                                <td>CD</td>
-                                <td>$1700</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><img src="img/product/book-3.jpg" alt="" /></td>
-                                <td>Box of pendrive</td>
-                                <td>
-                                    <button class="ds-setting">Disabled</button>
-                                </td>
-                                <td>Java</td>
-                                <td>CSE</td>
-                                <td>Book</td>
-                                <td>$1500</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><img src="img/product/book-4.jpg" alt="" /></td>
-                                <td>Quality Bol pen</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
-                                <td>PHP</td>
-                                <td>CSE</td>
-                                <td>CD</td>
-                                <td>$1200</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><img src="img/product/book-1.jpg" alt="" /></td>
-                                <td>Web Development Book</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
-                                <td>Wordpress</td>
-                                <td>CSE</td>
-                                <td>Book</td>
-                                <td>$1800</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td><img src="img/product/book-2.jpg" alt="" /></td>
-                                <td>Quality Bol pen</td>
-                                <td>
-                                    <button class="ps-setting">Paused</button>
-                                </td>
-                                <td>Java</td>
-                                <td>CSE</td>
-                                <td>CD</td>
-                                <td>$1000</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </table>
                     </div>
                     <div class="custom-pagination">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
+                        <a class="page-link" href="#">{{ $libraries->links() }}</a>
                     </div>
                 </div>
             </div>

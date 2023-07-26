@@ -2,6 +2,7 @@
 
 namespace App\Models\School;
 
+use App\Models\Memo;
 use App\Models\School\Subject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +21,6 @@ class Teacher extends Authenticatable
         'gender',
         'address',
         'telephone',
-        'subject_id',
         'image',
     ];
 
@@ -36,6 +36,11 @@ class Teacher extends Authenticatable
     public function subjects():HasMany
     {
         return $this->hasMany(Subject::class);
+    }
+
+    public function messages():HasMany
+    {
+        return $this->hasMany(Memo::class);
     }
 
 }

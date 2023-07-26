@@ -24,12 +24,14 @@
                                 <div class="form-group">
                                     <label class="control-label" for="email">Email</label>
                                     <input type="text" placeholder="example@gmail.com" title="Please enter you username" required value="" name="email" id="email" class="form-control">
-                                    <span class="help-block small">Your unique username to app</span>
+                                    
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="password">Password</label>
                                     <input type="password" title="Please enter your password" placeholder="******" required value="" name="password" id="password" class="form-control">
-                                    <span class="help-block small">Yur strong password</span>
+
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
                                 <div class="checkbox login-checkbox">
                                     <label>

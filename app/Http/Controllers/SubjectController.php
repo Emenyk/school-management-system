@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\school\subject;
+use App\Models\School\Subject;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoresubjectRequest;
 use App\Http\Requests\UpdatesubjectRequest;
@@ -14,7 +14,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return view('Subject.index');
+        return view('Subject.index', [
+            'subjects' => Subject::all()
+        ]);
     }
 
     /**
@@ -49,7 +51,7 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(subject $subject)
+    public function show(Subject $subject)
     {
         return view('Subject.show', [
             'subject' => $subject
@@ -59,7 +61,7 @@ class SubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(subject $subject)
+    public function edit(Subject $subject)
     {
         return view('Subject.edit', [
             'subject' => $subject
@@ -69,7 +71,7 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatesubjectRequest $request, subject $subject)
+    public function update(UpdatesubjectRequest $request, Subject $subject)
     {
         $subject->name = $request->name;
         $subject->description = $request->description;
@@ -85,14 +87,16 @@ class SubjectController extends Controller
 
         }$subject->update();
          // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Subject updated successfully!');
+        return redirect()->route('subjects.show', [
+            'subject' => $subject
+        ])->with('success', 'Subject updated successfully!');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(subject $subject)
+    public function destroy(Subject $subject)
     {
         // Delete the associated image if it exists
         if ($subject->image) {
@@ -100,7 +104,7 @@ class SubjectController extends Controller
         }
         $subject->delete();
         // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Subject deleted successfully!');
+        return redirect()->route('subjects.index')->with('success', 'Subject deleted successfully!');
 
     }
 }

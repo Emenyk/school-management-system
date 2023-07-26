@@ -2,16 +2,17 @@
 
 namespace App\Models\School;
 
+use App\Models\Memo;
 use App\Models\School\Mark;
 use App\Models\School\Attend;
 use App\Models\School\Parents;
 use App\Models\School\Subject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Authenticatable
 {
@@ -65,6 +66,11 @@ class Student extends Authenticatable
     public function parents():BelongsToMany
     {
         return $this->belongsToMany(Parents::class, 'student_parent');
+    }
+
+    public function messages():HasMany
+    {
+        return $this->hasMany(Memo::class);
     }
 
 }

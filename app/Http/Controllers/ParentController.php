@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
-use App\Models\School\Parents;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreparentsRequest;
+use Illuminate\Http\Request;
+use App\Models\School\Parents;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateparentsRequest;
 
-class ParentsController extends Controller
+class ParentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('parents.index');
+        return view('parents.index', [
+            'parents' => Parents::all()
+        ]);
     }
 
     /**
@@ -32,7 +33,6 @@ class ParentsController extends Controller
      */
     public function store(StoreparentsRequest $request)
     {
-
         $parents = new Parents();
         $parents->name          =  $request->name;
         $parents->email         =  $request->email;
@@ -56,28 +56,29 @@ class ParentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Parents $parents)
+    public function show(string $id)
     {
         return view('parents.show', [
-            'parents' => $parents
+            'parent' => Parents::findOrFail($id)
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Parents $parents)
+    public function edit(string $id)
     {
         return view('parents.edit', [
-            'parents' => $parents
+            'parent' => Parents::findOrFail($id)
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateparentsRequest $request, Parents $parents)
+    public function update(UpdateparentsRequest $request, string $id)
     {
+        $parents = Parents::findOrFail($id);
         $parents->name = $request->name;
         $parents->email = $request->email;
         $parents->password = bcrypt($request->password);
@@ -102,17 +103,15 @@ class ParentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Parents $parents)
+    public function destroy(string $id)
     {
         // Delete the associated image if it exists
+        $parents = Parents::findOrFail($id);
         if ($parents->image) {
             Storage::delete('public/images/parents/' . $parents->image);
         }
         $parents->delete();
         // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Parents deleted successfully!');
-
+        return redirect()->route('parents.index')->with('success', 'Parents deleted successfully!');
     }
 }
-
-

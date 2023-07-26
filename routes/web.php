@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachController;
 use App\Http\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParentsController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MemoController;
+use App\Http\Controllers\ParentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,17 +29,17 @@ use App\Http\Controllers\MemoController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::view('lock','admin.index')->name('lock');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('dashboard')->group(function () {
-
+    
     Route::resource('students', StudentController::class);
     Route::resource('subjects', SubjectController::class);
     Route::resource('classrooms', ClassroomController::class);
     Route::resource('teachers', TeacherController::class);
-    Route::resource('parents', ParentsController::class);
+    Route::resource('parents', ParentController::class);
     Route::resource('libraries', LibraryController::class);
 
     Route::get('memo', [MemoController::class, 'index'] )->name('memo.index');
@@ -53,7 +55,16 @@ Route::prefix('dashboard')->group(function () {
     Route::get('studentAttendance', [AttendanceController::class, 'create'])->name('student.attend');
     Route::post('attendanceStore', [AttendanceController::class, 'store'])->name('attendance.store');
     Route::post('markAttendance', [AttendanceController::class, 'getStudents'])->name('Mark.attendance');
-
+    Route::get('assign/class', [AttachController::class, 'index'])->name('student.class');
+    Route::post('assign/class', [AttachController::class, 'attachToIndex'])->name('studentToClass');
+    Route::get('assign/subject', [AttachController::class, 'forClassroom'])->name('class.subject');
+    Route::post('assign/subject', [AttachController::class, 'attachToClassroom'])->name('classToSubject');
+    Route::get('assign/student', [AttachController::class, 'forStudent'])->name('student.subject');
+    Route::post('assign/student', [AttachController::class, 'attachToStudent'])->name('studentToSubject');
+    Route::get('assign/teacher', [AttachController::class, 'forTeacher'])->name('teacher.subject');
+    Route::post('assign/teacher', [AttachController::class, 'attachToTeacher'])->name('teacherToSubject');
+    Route::get('assign/parent', [AttachController::class, 'forParent'])->name('parent.student');
+    Route::post('assign/parent', [AttachController::class, 'attachToParent'])->name('parentToStudent');
 });
 
 Route::middleware('auth')->group(function () {

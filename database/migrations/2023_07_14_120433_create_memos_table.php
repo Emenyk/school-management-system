@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('memos', function (Blueprint $table) {
             $table->id();
-            $table->integer('reciever');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('teacher_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('subject');
             $table->string('body');
             $table->string('attachment')->nullable();

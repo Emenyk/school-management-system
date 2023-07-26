@@ -17,27 +17,91 @@ class MemoController extends Controller
     }
 
     public function store(Request $request){
-        $validateData = $request->validate([
-            'reciever' => 'required|integer',
-            'subject' => 'required|string',
-            'body' => 'required|string',
 
-        ]);
+        if ($request->input('admin')) {
+            try {
+                $adminID = $request->admin;
+                $adminID = 1;
+                $memo = new Memo();
+                $memo->subject = $request->subject;
+                $memo->body = trim(strip_tags($request->body));
+                $memo->user_id = $adminID;
+                 if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/memos', $attachmentName);
+                    $memo->attachment = $attachmentName;
+                }
+                 $memo->save();
+                 // Success logic goes here
+             } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
+            }
 
-        $memo = new Memo();
-        $memo->subject = $validateData['subject'];
-        $memo->body = $validateData['body'];
-        $memo->reciever = $validateData['reciever'];
-        if ($request->hasFile('attachment')) {
+        }elseif ($request->input('parent')) {
 
-            $attachment = $request->file('attachment');
-            $attachmentName = time().'.'.$attachment->extension();
-            $attachment->storeAs('public/memos', $attachmentName);
-            $memo->attachment = $attachmentName;
+            try {
+                $memo = new Memo();
+                $memo->subject = $request->subject;
+                $memo->body = trim(strip_tags($request->body));
+                $memo->parent_id = $request->parent;
+                 if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/memos', $attachmentName);
+                    $memo->attachment = $attachmentName;
+                }
+                 $memo->save();
+                 // Success logic goes here
+             } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
+            }
+
+        }elseif ($request->input('teacher')) {
+
+            try {
+                $memo = new Memo();
+                $memo->subject = $request->subject;
+                $memo->body = trim(strip_tags($request->body));
+                $memo->teacher_id = $request->teacher;
+                 if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/memos', $attachmentName);
+                    $memo->attachment = $attachmentName;
+                }
+                 $memo->save();
+                // Success logic goes here
+            } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
+            }
+
+        }elseif ($request->input('student')) {
+
+            try {
+                $memo = new Memo();
+                $memo->subject = $request->subject;
+                $memo->body = trim(strip_tags($request->body));
+                $memo->student_id = $request->student;
+                 if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/memos', $attachmentName);
+                    $memo->attachment = $attachmentName;
+                }
+                 $memo->save();
+                // Success logic goes here
+            } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to save the memo to the database. Please try again.');
+            }
+
         }
-        $memo->save();
 
-        return redirect()->back()->with('success', 'Teacher updated successfully!');
+        return redirect()->back()->with('success', 'message sent successfully!');
     }
 
     public function show(Memo $memo){
@@ -45,5 +109,5 @@ class MemoController extends Controller
             'memo' => $memo
         ]);
     }
-    
+
 }

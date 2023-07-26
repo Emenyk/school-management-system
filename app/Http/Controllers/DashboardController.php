@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Memo;
 use App\Models\School\Attend;
+use App\Models\School\Classroom;
 use App\Models\School\Student;
 use App\Models\School\Subject;
 use App\Models\School\Teacher;
@@ -16,13 +18,15 @@ class DashboardController extends Controller
         $allTeachers = Teacher::all()->count();
         $allSubjects = Subject::all()->count();
         $todaysAttendance = Attend::whereDate('created_at', today())->count();
-        $attendancePercentage = ($todaysAttendance / $allStudents) * 100;
+        $todaysAttendance > 0 ? $attendancePercentage = ($todaysAttendance / $allStudents) * 100 : $attendancePercentage = 0;
         return view('dashboard', [
             'todaysAttendance' => $todaysAttendance,
-            'attendancePercentage' => $attendancePercentage,
+            'attendancePercentage' => floor($attendancePercentage),
             'allStudents' => $allStudents,
             'allTeachers' => $allTeachers,
-            'allSubjects' => $allSubjects
+            'allSubjects' => $allSubjects,
+            'classrooms' => Classroom::paginate(5),
+            'memos' => Memo::orderByDesc('created_at')->take(5)->get(),
         ]);
     }
 }

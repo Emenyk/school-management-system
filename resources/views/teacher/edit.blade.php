@@ -27,11 +27,7 @@
                                                             value="{{ $teacher->name }}"
                                                             class="form-control" placeholder="Full Name">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <input name="address" type="address"
-                                                            value="{{ $teacher->address }}"
-                                                            class="form-control" placeholder="Address">
-                                                        </div>
+
                                                         <div class="form-group">
                                                             <input name="telephone" type="tel"
                                                             value="{{ $teacher->telephone }}"
@@ -52,13 +48,6 @@
                                                             value="{{ $teacher->DOB }}"
                                                             class="form-control" placeholder="Date of Birth">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <select name="subject_id" class="form-control">
-                                                                    <option value="none" selected="" disabled="">Select subject</option>
-                                                                    <option value="subject">English</option>
-                                                                    <option value="subject">Literature</option>
-                                                            </select>
-                                                        </div>
 
                                                         <div class="form-group">
                                                             <select name="gender" class="form-control">
@@ -68,7 +57,11 @@
                                                                 <option value="female">female</option>
                                                             </select>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <input name="address" type="address"
+                                                            value="{{ $teacher->address }}"
+                                                            class="form-control" placeholder="Address">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -93,8 +86,10 @@
                                                 <form action="{{ route('teachers.destroy', ['teacher' => $teacher]) }}" method="post">
                                                     @method('delete')
                                                     @csrf
+                                                    <br>
+                                                    <h3>Do you want to delete {{ $teacher->name }}?</h3>
+                                                    <br>
                                                 <div class="devit-card-custom">
-
                                                     <button class="btn btn-primary waves-effect waves-light">DELETE</button>
                                                 </div>
                                                 </form>

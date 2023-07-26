@@ -40,22 +40,18 @@
                                         <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                             <div class="header-top-menu tabl-d-n">
                                                 <ul class="nav navbar-nav mai-top-nav">
-                                                    <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                                                    <li class="nav-item"><a href="/" class="nav-link">Home</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                                    </li>
-                                                    <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                                    </li>
+
                                                     <li class="nav-item dropdown res-dis-nn">
-                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Project <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Assign <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
                                                         <div role="menu" class="dropdown-menu animated zoomIn">
-                                                            <a href="#" class="dropdown-item">Documentation</a>
-                                                            <a href="#" class="dropdown-item">Expert Backend</a>
-                                                            <a href="#" class="dropdown-item">Expert FrontEnd</a>
-                                                            <a href="#" class="dropdown-item">Contact Support</a>
+                                                            <a href="{{ route('student.class') }}" class="dropdown-item">student to class</a>
+                                                            <a href="{{ route('student.subject') }}" class="dropdown-item">Subject to Student</a>
+                                                            <a href="{{ route('teacher.subject') }}" class="dropdown-item">Subject to Teacher</a>
+                                                            <a href="{{ route('parent.student') }}" class="dropdown-item">Students to Parent</a>
+                                                            <a href="{{ route('class.subject') }}" class="dropdown-item">Subjects to Class</a>
                                                         </div>
-                                                    </li>
-                                                    <li class="nav-item"><a href="#" class="nav-link">Support</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -63,128 +59,8 @@
                                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                             <div class="header-right-info">
                                                 <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                    <li class="nav-item dropdown">
-                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-message edu-chat-pro" aria-hidden="true"></i><span class="indicator-ms"></span></a>
-                                                        <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
-                                                            <div class="message-single-top">
-                                                                <h1>Message</h1>
-                                                            </div>
-                                                            <ul class="message-menu">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="message-img">
-                                                                            <img src="img/contact/1.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="message-content">
-                                                                            <span class="message-date">16 Sept</span>
-                                                                            <h2>Advanda Cro</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="message-img">
-                                                                            <img src="img/contact/4.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="message-content">
-                                                                            <span class="message-date">16 Sept</span>
-                                                                            <h2>Sulaiman din</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="message-img">
-                                                                            <img src="img/contact/3.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="message-content">
-                                                                            <span class="message-date">16 Sept</span>
-                                                                            <h2>Victor Jara</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="message-img">
-                                                                            <img src="img/contact/2.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="message-content">
-                                                                            <span class="message-date">16 Sept</span>
-                                                                            <h2>Victor Jara</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="message-view">
-                                                                <a href="#">View All Messages</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
-                                                        <div role="menu" class="notification-author dropdown-menu animated zoomIn">
-                                                            <div class="notification-single-top">
-                                                                <h1>Notifications</h1>
-                                                            </div>
-                                                            <ul class="notification-menu">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="notification-icon">
-                                                                            <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
-                                                                        </div>
-                                                                        <div class="notification-content">
-                                                                            <span class="notification-date">16 Sept</span>
-                                                                            <h2>Advanda Cro</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="notification-icon">
-                                                                            <i class="fa fa-cloud edu-cloud-computing-down" aria-hidden="true"></i>
-                                                                        </div>
-                                                                        <div class="notification-content">
-                                                                            <span class="notification-date">16 Sept</span>
-                                                                            <h2>Sulaiman din</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="notification-icon">
-                                                                            <i class="fa fa-eraser edu-shield" aria-hidden="true"></i>
-                                                                        </div>
-                                                                        <div class="notification-content">
-                                                                            <span class="notification-date">16 Sept</span>
-                                                                            <h2>Victor Jara</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <div class="notification-icon">
-                                                                            <i class="fa fa-line-chart edu-analytics-arrow" aria-hidden="true"></i>
-                                                                        </div>
-                                                                        <div class="notification-content">
-                                                                            <span class="notification-date">16 Sept</span>
-                                                                            <h2>Victor Jara</h2>
-                                                                            <p>Please done this project as soon possible.</p>
-                                                                        </div>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="notification-view">
-                                                                <a href="#">View All Notification</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="nav-item">
+
+                                                    <li class="nav-item fa-fa-user">
                                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             @if (auth()->user())
                                                             <img src="img/product/pro4.jpg" alt="" />
@@ -345,16 +221,6 @@
 
                                                 </ul>
                                             </li>
-                                            <li><a data-toggle="collapse" data-target="#demo" href="#">Memo <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                                <ul id="demo" class="collapse dropdown-header-top">
-                                                    <li><a href="{{ route('memo.index') }}">Inbox</a>
-                                                    </li>
-                                                    <li><a href="{{ route('memo.show') }}">View Memo</a>
-                                                    </li>
-                                                    <li><a href="{{ route('memo.create') }}">Compose Memo</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -377,7 +243,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                             <ul class="breadcome-menu">
                                                 <li><a href="{{ url()->previous() }}"><i class="fa fa-arrow-left"></i> BACK / </a><span class="bread-slash"></span>
                                                 </li>
@@ -387,6 +253,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    <strong>Well Done!</strong> {{ session('success') }}.
+                                </div>
+                                @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger alert-mg-b">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    <strong>Danger!</strong> {{ session('error') }}.
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

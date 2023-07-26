@@ -2,11 +2,13 @@
 
 namespace App\Models\School;
 
+use App\Models\Memo;
 use App\Models\School\Student;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Parents extends Authenticatable
 {
@@ -33,6 +35,11 @@ class Parents extends Authenticatable
     public function students():BelongsToMany
     {
         return $this->belongsToMany(Student::class, 'student_parent');
+    }
+
+    public function messages():HasMany
+    {
+        return $this->hasMany(Memo::class);
     }
 
 }

@@ -17,8 +17,19 @@ class classroomFactory extends Factory
     public function definition(): array
     {
         return [
-            
-            'name' => fake()->name(),
+
+            'name' => fake()->randomElement([
+                'JSS1A',
+                'JSS2B',
+                'JSS3C',
+                'SS1D',
+                'SS2E',
+                'SS3F',
+                'JSS1G',
+                'JSS2H',
+                'JSS3I',
+                '1SS1J'
+            ]),
             'classTeacher' => fake()->name(),
             'status' => fake()->randomElement(['active', 'inactive']),
             'image' => null, // Replace null with your desired default image path if needed

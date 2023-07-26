@@ -34,7 +34,7 @@
                                                             <input type="file" name="image" id="">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            
+
                                                             <div class="form-group">
                                                                 <select name="gender" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select Gender</option>
@@ -45,7 +45,7 @@
                                                             <div class="form-group">
                                                                 <input name="telephone" type="text" class="form-control" placeholder="Mobile number">
                                                             </div>
-                                                                
+
                                                             <div class="form-group">
                                                                 <input type="password" name="password" class="form-control" placeholder="Password">
                                                             </div>
@@ -102,4 +102,4 @@
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-app-layout>

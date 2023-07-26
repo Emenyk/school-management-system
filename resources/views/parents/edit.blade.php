@@ -6,9 +6,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-payment-inner-st">
                         <ul id="myTabedu1" class="tab-review-design">
-                            <li class="active"><a href="#description">Edit Basic Information</a></li>
-                            <li><a href="#reviews"> Edit Acount Information</a></li>
-                            <li><a href="#INFORMATION">Edit Social Information</a></li>
+                            <li class="active"><a href="#description">Basic Information</a></li>
+                            <li><a href="#INFORMATION">Other Information</a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content custom-product-edit">
                             <div class="product-tab-list tab-pane fade active in" id="description">
@@ -16,120 +15,48 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="review-content-section">
                                             <div id="dropzone1" class="pro-ad">
-                                                <form action="#" class="dropzone dropzone-custom needsclick add-professors" id="demo1-upload">
+                                                <form action="{{ route('parents.update', [$parent->id]) }}" method="POST" id="demo1-upload" enctype="multipart/form-data">
+                                                    @method('put')
+                                                    @csrf
                                                     <div class="row">
+
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="form-group">
-                                                                <input name="number" type="text" class="form-control" placeholder="Fly Zend" value="Fly Zend">
+                                                                <input name="name" value="{{ $parent->name }}" type="text" class="form-control" placeholder="Full Name">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="E104, catn-2, UK." value="E104, catn-2, UK.">
+                                                                <input name="email" value="{{ $parent->email }}" type="email" class="form-control" placeholder="Email">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="12/10/1993" value="12/10/1993">
+                                                                <input name="address" value="{{ $parent->address }}" type="address" class="form-control" placeholder="Address">
                                                             </div>
-                                                            <div class="form-group">
-                                                                <input type="number" class="form-control" placeholder="1213" value="1213">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="number" class="form-control" placeholder="01962067309" value="01962067309">
-                                                            </div>
-                                                            <div class="form-group alert-up-pd">
-                                                                <div class="dz-message needsclick download-custom">
-                                                                    <i class="fa fa-download edudropnone" aria-hidden="true"></i>
-                                                                    <h2 class="edudropnone">Drop image here or click to upload.</h2>
-                                                                    <p class="edudropnone"><span class="note needsclick">(This is just a demo dropzone. Selected image is <strong>not</strong> actually uploaded.)</span>
-                                                                    </p>
-                                                                    <input name="imageico" class="hd-pro-img" type="text" />
-                                                                </div>
-                                                            </div>
+                                                            <br>
+                                                            <i>parent image</i>
+                                                            <input type="file" name="image" id="">
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="CSE" value="CSE">
-                                                            </div>
-                                                            <div class="form-group edit-ta-resize res-mg-t-15">
-                                                                <textarea name="description">Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.</textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <select class="form-control">
-                                                                    <option>Male</option>
-                                                                    <option>Male</option>
-                                                                    <option>Female</option>
+                                                                <select name="gender" class="form-control">
+                                                                    <option value="{{ $parent->gender }}" selected="" >{{ $parent->gender }}</option>
+                                                                    <option value="male">Male</option>
+                                                                    <option value="female">Female</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
-                                                                <select class="form-control">
-                                                                        <option>Nepal</option>
-                                                                        <option>India</option>
-                                                                        <option>Pakistan</option>
-                                                                        <option>Amerika</option>
-                                                                        <option>China</option>
-                                                                        <option>Dubai</option>
-                                                                        <option>Nepal</option>
-                                                                    </select>
+                                                                <input name="telephone" value="{{ $parent->telephone }}" type="text" class="form-control" placeholder="Mobile number">
                                                             </div>
-                                                            <div class="form-group">
-                                                                <select class="form-control">
-                                                                        <option>Maharastra</option>
-                                                                        <option>Gujarat</option>
-                                                                        <option>Maharastra</option>
-                                                                        <option>Rajastan</option>
-                                                                        <option>Maharastra</option>
-                                                                        <option>Rajastan</option>
-                                                                        <option>Gujarat</option>
-                                                                    </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <select class="form-control">
-                                                                        <option>Baroda</option>
-                                                                        <option>Surat</option>
-                                                                        <option>Baroda</option>
-                                                                        <option>Navsari</option>
-                                                                        <option>Baroda</option>
-                                                                        <option>Surat</option>
-                                                                    </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" placeholder="www.uttara.com" value="www.uttara.com">
-                                                            </div>
+
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
-                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-tab-list tab-pane fade" id="reviews">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="review-content-section">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="Email" value="Admin@gmail.com">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" placeholder="Phone" value="01962067309">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" placeholder="Password" value="#123#123">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" placeholder="Confirm Password" value="#123#123">
-                                                        </div>
-                                                        <a href="#!" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -140,23 +67,16 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="review-content-section">
                                             <div class="row">
+                                            <form action="{{ route('parents.destroy', [$parent->id]) }}" method="post">
+                                                @method('delete')
+                                                @csrf
                                                 <div class="col-lg-12">
                                                     <div class="devit-card-custom">
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Facebook URL" value="http://www.facebook.com">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Twitter URL" value="http://www.twitter.com">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Google Plus" value="http://www.google-plus.com">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="url" class="form-control" placeholder="Linkedin URL" value="http://www.Linkedin.com">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Delete</button>
                                                     </div>
                                                 </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -168,4 +88,4 @@
             </div>
         </div>
     </div>
-    </x-app-layout>
+</x-app-layout>

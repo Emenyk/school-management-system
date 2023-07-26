@@ -17,8 +17,20 @@ class subjectFactory extends Factory
     public function definition(): array
     {
         return [
-            
-            'name' => fake()->name(),
+
+
+            'name' => fake()->randomElement(            [
+                'Mathematics',
+                'Science',
+                'History',
+                'English',
+                'Geography',
+                'Physics',
+                'Chemistry',
+                'Biology',
+                'Computer Science',
+                'Literature'
+            ]),
             'image' => null, // Replace null with your desired default image path if needed
             'description' => fake()->text(),
         ];

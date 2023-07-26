@@ -41,14 +41,6 @@
                                                                 <input name="DOB" id="finish" type="date" class="form-control" placeholder="Date of Birth">
                                                             </div>
                                                             <div class="form-group">
-                                                                <select name="subject_id" class="form-control">
-                                                                        <option value="none" selected="" disabled="">Select subject</option>
-                                                                        <option value="subject">English</option>
-                                                                        <option value="subject">Literature</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="form-group">
                                                                 <select name="gender" class="form-control">
                                                                     <option value="none" selected="" disabled="">Select Gender</option>
                                                                     <option value="male">male</option>

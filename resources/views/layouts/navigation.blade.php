@@ -32,7 +32,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a title="event" href="{{ route('event.index') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a>
+                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Message</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Inbox" href="{{ route('memo.show') }}"><span class="mini-sub-pro">Inbox</span></a></li>
+                            <li><a title="View Memo" href="{{ route('memo.index') }}"><span class="mini-sub-pro">View</span></a></li>
+                            <li><a title="Compose Memo" href="{{ route('memo.create') }}"><span class="mini-sub-pro">Compose</span></a></li>
+                        </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
@@ -70,8 +75,6 @@
                             <li><a title="Add Class" href="{{ route('classrooms.create') }}"><span class="mini-sub-pro">Add class</span></a></li>
                         </ul>
                     </li>
-                    @can('isStudent')
-
                     <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
@@ -79,19 +82,10 @@
                             <li><a title="Add Library" href="{{ route('libraries.create') }}"><span class="mini-sub-pro">Add Library Asset</span></a></li>
                         </ul>
                     </li>
-                    @endcan
-                    @can('isAdmin')
-
-
                     <li>
-                        <a class="has-arrow" href="mailbox.html" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Memo</span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Inbox" href="{{ route('memo.show') }}"><span class="mini-sub-pro">Inbox</span></a></li>
-                            <li><a title="View Memo" href="{{ route('memo.index') }}"><span class="mini-sub-pro">View</span></a></li>
-                            <li><a title="Compose Memo" href="{{ route('memo.create') }}"><span class="mini-sub-pro">Compose</span></a></li>
-                        </ul>
+                        <a title="event" href="{{ route('event.index') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News</span></a>
                     </li>
-                    @endcan
+
                 </ul>
             </nav>
         </div>

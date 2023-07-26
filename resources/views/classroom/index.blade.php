@@ -4,122 +4,57 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap drp-lst">
-                    <h4>Departments List</h4>
+                    <h4>Class List</h4>
                     <div class="add-product">
-                        <a href="add-department.html">Add Departments</a>
+                        <a href="{{ route('classrooms.create') }}">Add Classroom</a>
                     </div>
                     <div class="asset-inner">
                         <table>
                             <tr>
-                                <th>No</th>
-                                <th>Name of Dept.</th>
+                                <th>Class ID</th>
+                                <th>Class Name.</th>
                                 <th>Status</th>
-                                <th>Head</th>
-                                <th>Email</th>
-                                <th>Phone</th>
+                                <th>Class Teacher</th>
                                 <th>No. of Students</th>
                                 <th>Setting</th>
                             </tr>
+                            @foreach ($classrooms as $classroom)
+
                             <tr>
-                                <td>1</td>
-                                <td>Computer</td>
+                                <td>{{ $classroom->id }}</td>
+                                <td>{{ $classroom->name }}</td>
                                 <td>
-                                    <button class="pd-setting">Active</button>
+                                    @if ($classroom->status == 'inactive')
+                                    <button class="btn btn-warning">{{ $classroom->status }}</button>
+                                    @else
+                                    <button class="pd-setting">{{ $classroom->status }}</button>
+                                    @endif
                                 </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1500</td>
-                                <td>
+                                <td>{{ $classroom->classTeacher }}</td>
+
+                                {{-- <td>01962067309</td> --}}
+                                <td>{{ $classroom->students()->count() }}</td>
+                                <td style="display: flex">
+                                    <a href="{{ route('classrooms.edit', ['classroom' => $classroom]) }}">
                                     <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    </a>
+                                    <form method="POST" action="{{ route('classrooms.destroy', ['classroom' => $classroom]) }}">
+                                        @method('delete')
+                                        @csrf
                                     <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                                <td>
-                                    <button class="ps-setting">Paused</button>
-                                </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1700</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>MBA</td>
-                                <td>
-                                    <button class="ds-setting">Disabled</button>
-                                </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1500</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>BBA</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1200</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>CSE</td>
-                                <td>
-                                    <button class="pd-setting">Active</button>
-                                </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1800</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>MBA</td>
-                                <td>
-                                    <button class="ps-setting">Paused</button>
-                                </td>
-                                <td>John Alva</td>
-                                <td>admin@gmail.com</td>
-                                <td>01962067309</td>
-                                <td>1000</td>
-                                <td>
-                                    <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
+                            @endforeach
+
                         </table>
                     </div>
                     <div class="custom-pagination">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+                                <a class="page-item">{{ $classrooms->links() }}</a>
+
                             </ul>
                         </nav>
                     </div>

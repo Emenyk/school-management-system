@@ -6,6 +6,7 @@ use App\Models\School\Library;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreLibraryRequest;
 use App\Http\Requests\UpdateLibraryRequest;
+use App\Models\School\Classroom;
 
 class LibraryController extends Controller
 {
@@ -14,7 +15,9 @@ class LibraryController extends Controller
      */
     public function index()
     {
-        return view('library.index');
+        return view('library.index', [
+            'libraries' => Library::orderByDesc('id')->paginate(5)
+        ]);
     }
 
     /**
@@ -22,7 +25,9 @@ class LibraryController extends Controller
      */
     public function create()
     {
-        return view('library.create');
+        return view('library.create', [
+            'classrooms' => Classroom::all()
+        ]);
     }
 
     /**
@@ -43,14 +48,13 @@ class LibraryController extends Controller
 
             $file = $request->file('file');
             $fileName = time().'.'.$file->extension();
-            $file->storeAs('public/images/libraries', $fileName);
+            $file->storeAs('public/libraries', $fileName);
             $asset->file = $fileName;
 
         }
         $asset->save();
 
-        return redirect()->back();
-
+        return redirect()->route('libraries.index')->with('success', 'Library asset stored successfully!');
     }
 
     /**
@@ -69,7 +73,8 @@ class LibraryController extends Controller
     public function edit(library $library)
     {
         return view('library.edit', [
-            'library' => $library
+            'library' => $library,
+            'classrooms' => Classroom::all()
         ]);
     }
 
@@ -92,7 +97,7 @@ class LibraryController extends Controller
             }
             $file = $request->file('file');
             $fileName = time().'.'.$file->extension();
-            $file->storeAs('public/images/libraries', $fileName);
+            $file->storeAs('public/libraries', $fileName);
             $library->file = $fileName;
         }
          $library->update();
@@ -107,7 +112,7 @@ class LibraryController extends Controller
     {
         // Delete the associated file if it exists
         if ($library->file) {
-            Storage::delete('public/images/libraries/' . $library->file);
+            Storage::delete('public/libraries/' . $library->file);
         }
         $library->delete();
         // You can add any additional logic or redirect here if needed

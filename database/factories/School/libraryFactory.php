@@ -16,12 +16,20 @@ class libraryFactory extends Factory
      */
     public function definition(): array
     {
-        return [    
-           
+        return [
+
             'asset' => fake()->word(),
             'author' => fake()->name(),
             'year' => fake()->numberBetween(1900, 2023),
-            'classroom' => fake()->word(),
+            'classroom' => fake()->randomElement([
+                'JSS1',
+                'JSS2',
+                'JSS3',
+                'SS1',
+                'SS2',
+                'SS3',
+
+            ]),
             'status' => fake()->word(),
             'type' => fake()->word(),
             'price' => fake()->numberBetween(500, 10000),

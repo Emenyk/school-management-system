@@ -7,7 +7,7 @@
                 <div class="product-payment-inner-st">
                     <ul id="myTabedu1" class="tab-review-design">
                         <li class="active"><a href="#description">Library Assets</a></li>
-                       
+
                     </ul>
                     <div id="myTabContent" class="tab-content custom-product-edit">
                         <div class="product-tab-list tab-pane fade active in" id="description">
@@ -35,17 +35,28 @@
                                                     </div>
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                        <div class="form-group">
-                                                            <input name="classroom" type="text" class="form-control" placeholder="classroom">
-                                                        </div>
                                                         <div class="form-group res-mg-t-15">
-                                                            <input name="type" type="text" class="form-control" placeholder="pdf, doc, html, png etc">
+                                                            <input name="type" type="text" class="form-control" placeholder="filetype  = pdf, doc, html, img etc...">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="classroom" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select classroom</option>
+                                                                @if ($classrooms)
+                                                                    @foreach ($classrooms as $classroom)
+                                                                    <option>{{ $classroom->name }}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                            </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <input name="price" type="text" class="form-control" value="free">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="status" type="text" class="form-control" value="available">
+                                                            <select name="status" class="form-control">
+                                                                <option value="none" selected="" disabled="">Select status</option>
+                                                                <option>Available</option>
+                                                                <option>unavailable</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
