@@ -85,10 +85,6 @@
                                                             </li>
                                                             <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                             </li>
-                                                            <li><a href="#"><span class="edu-icon edu-money author-log-ic"></span>User Billing</a>
-                                                            </li>
-                                                            <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Settings</a>
-                                                            </li>
                                                             @if(auth()->user())
                                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                                 <span class="edu-icon edu-locked author-log-ic"></span>Logout</a>
@@ -118,18 +114,24 @@
 
                                                         <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
                                                             <ul class="nav nav-tabs custon-set-tab">
-                                                                <li class="active"><a data-toggle="tab" href="#Notes">Notes</a>
+                                                                <li class="active"><a data-toggle="tab" href="#Notes">Academic session</a>
                                                                 </li>
-                                                                <li><a data-toggle="tab" href="#Projects">Projects</a>
+                                                                <li><a data-toggle="tab" href="#Projects">Events</a>
                                                                 </li>
-                                                                <li><a data-toggle="tab" href="#Settings">Settings</a>
+                                                                <li><a data-toggle="tab" href="#Settings">Make Admin</a>
                                                                 </li>
                                                             </ul>
 
                                                             <div class="tab-content custom-bdr-nt">
                                                                 <div id="Notes" class="tab-pane fade in active">
                                                                     <div class="notes-area-wrap">
-
+                                                                        <br>
+                                                                        <form action="{{ route('session.store') }}" method="POST">
+                                                                            @csrf
+                                                                                <input class="form-control" type="text" name="academicYear" placeholder=" eg 2023/2024">
+                                                                                <br>
+                                                                                <input class="btn btn-success " type="submit" value="Submit">
+                                                                        </form>
 
 
                                                                     </div>
@@ -175,7 +177,7 @@
 
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('event.index') }}">Event</a></li>
+                                            <li><a href="{{ route('event.index') }}">News</a></li>
                                             <li><a data-toggle="collapse" data-target="#demoevent" href="#">Teachers <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                                 <ul id="demoevent" class="collapse dropdown-header-top">
                                                     <li><a href="{{ route('teachers.index') }}">All Teachers</a>
@@ -217,6 +219,15 @@
                                                     <li><a href="{{ route('classrooms.index') }}">Class List</a>
                                                     </li>
                                                     <li><a href="{{ route('classrooms.create') }}">Add Class</a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                            <li><a data-toggle="collapse" data-target="#demodepart" href="#">Message <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                                <ul id="demodepart" class="collapse dropdown-header-top">
+                                                    <li><a href="{{ route('memo.index') }}">all messages</a>
+                                                    </li>
+                                                    <li><a href="{{ route('memo.create') }}">compose</a>
                                                     </li>
 
                                                 </ul>

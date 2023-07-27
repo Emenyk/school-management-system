@@ -8,7 +8,6 @@ use App\Models\School\Classroom;
 use App\Models\School\Student;
 use App\Models\School\Subject;
 use App\Models\School\Teacher;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
