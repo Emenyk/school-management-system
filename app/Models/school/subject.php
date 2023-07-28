@@ -20,9 +20,9 @@ class Subject extends Model
         'description',
     ];
 
-    public function classroom():BelongsTo
+    public function classroom():BelongsToMany
     {
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsToMany(Classroom::class, 'classroom_subject');
     }
     public function teacher():BelongsTo
     {

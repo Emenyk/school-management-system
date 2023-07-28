@@ -21,8 +21,10 @@ class markFactory extends Factory
         $studentRandomIds = Student::pluck('id')->toArray();
         return [
             'session' => '2023/2024',
-            'type' => fake()->word(),
-            'mark' => fake()->randomFloat(2, 0, 100),
+            'type' => 'first term',
+            'assignment' => fake()->randomFloat(2, 0, 20),
+            'test' => fake()->randomFloat(2, 0, 20),
+            'exam' => fake()->randomFloat(2, 0, 60),
             'student_id' => fake()->randomElement($studentRandomIds),
             'subject_id' => null,
 

@@ -8,17 +8,17 @@
                     <div class="sparkline8-list">
                         <div class="basic-login-inner">
                             <h3>Check Result</h3>
-                            <p>put student unique ID</p>
+                            <p>put examination ID</p>
                             <form action="{{ route('result.show') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="studentID" class="form-control" placeholder="######">
+                                    <input type="text" name="resultID" class="form-control" placeholder="######">
                                 </div>
 
                                 <br>
                                 <div class="form-group-inner">
 
-                                        <button class="btn btn-primary" type="submit">Select</button>
+                                        <button class="btn btn-primary" type="submit">Check</button>
 
 
                                 </div>
@@ -38,9 +38,9 @@
                                 <table class="table sparkle-table">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Data</th>
-                                            <th>User</th>
+                                            <th>Subject</th>
+                                            <th>mark</th>
+                                            <th>%</th>
                                             <th></th>
                                         </tr>
                                     </thead>

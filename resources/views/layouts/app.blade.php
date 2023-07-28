@@ -130,6 +130,12 @@
                                                                             @csrf
                                                                                 <input class="form-control" type="text" name="academicYear" placeholder=" eg 2023/2024">
                                                                                 <br>
+                                                                                <select name="term" class="form-control" id="term">
+                                                                                    <option value="">first term</option>
+                                                                                    <option value="">second term</option>
+                                                                                    <option value="">third term</option>
+                                                                                </select>
+                                                                                <br>
                                                                                 <input class="btn btn-success " type="submit" value="Submit">
                                                                         </form>
 
@@ -177,7 +183,7 @@
 
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('event.index') }}">News</a></li>
+                                            <li><a href="{{ route('news.create') }}">News</a></li>
                                             <li><a data-toggle="collapse" data-target="#demoevent" href="#">Teachers <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                                 <ul id="demoevent" class="collapse dropdown-header-top">
                                                     <li><a href="{{ route('teachers.index') }}">All Teachers</a>

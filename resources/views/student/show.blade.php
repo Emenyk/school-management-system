@@ -108,11 +108,30 @@
                                                 </div>
                                                 <div class="ex-pro">
                                                     <ul>
-                                                        <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                                        <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                                        <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                                        <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                                                        <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+
+                                                        @foreach ($student->subjects as $subject)
+                                                        <li><i class="fa fa-angle-right"></i> {{ $subject->name }}</li>
+                                                        @endforeach
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="skill-title">
+                                                            <h2>Parent</h2>
+                                                            <hr />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ex-pro">
+                                                    <ul>
+
+                                                        @foreach ($student->parents as $parent)
+                                                        <li><i class="fa fa-angle-right"></i> {{ $parent->name }}</li>
+                                                        @endforeach
+
                                                     </ul>
                                                 </div>
                                             </div>

@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('academic_years', function (Blueprint $table) {
-            $table->id();
-            $table->string('academicYear');
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('academic_years')) {
+
+            Schema::create('academic_years', function (Blueprint $table) {
+                $table->id();
+                $table->string('academicYear');
+                $table->string('term');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

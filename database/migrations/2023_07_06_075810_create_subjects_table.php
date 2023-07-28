@@ -17,7 +17,6 @@ return new class extends Migration
                 $table->string('name');
                 $table->string('image')->nullable();
                 $table->text('description')->nullable();
-                $table->foreignId('classroom_id')->nullable();
                 $table->foreignId('teacher_id')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
@@ -31,7 +30,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('subjects', function(Blueprint $table){
-            $table->dropColumn('classroom_id');
             $table->dropColumn('teacher_id');
 
         });

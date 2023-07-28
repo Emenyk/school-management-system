@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('session');
             $table->string('type');
-            $table->integer('mark');
+            $table->float('assignment');
+            $table->float('test');
+            $table->float('exam');
             $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
 

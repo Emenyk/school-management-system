@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -19,7 +20,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
@@ -27,7 +28,61 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = new News();
+        $news->title = $request->title;
+        $news->body = trim(strip_tags($request->body));
+        if (auth()->user()) {
+            try {
+                $adminID = auth()->user()->id;
+                $news->user_id = $adminID;
+                if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/news', $attachmentName);
+                    $news->attachment = $attachmentName;
+                }$news->save();
+            
+            } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
+            }
+
+        }elseif (auth('teacher')->user()) {
+
+            try {
+                $teacherID = auth('teacher')->user()->id;
+                $news->teacher_id = $teacherID;
+                if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/news', $attachmentName);
+                    $news->attachment = $attachmentName;
+                }$news->save();
+                
+            } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to publish the news. please try again.');
+            }
+
+        }elseif (auth('student')) {
+
+            try {
+                $studentID = auth('student')->user()->id;
+                $news->student_id = $studentID;
+                 if ($request->hasFile('attachment')) {
+                    $attachment = $request->file('attachment');
+                    $attachmentName = time().'.'.$attachment->extension();
+                    $attachment->storeAs('public/news', $attachmentName);
+                    $news->attachment = $attachmentName;
+                }$news->save();
+                
+            } catch (\Exception $e) {
+                // Handle the exception and push back to the page with an error message
+                return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
+            }
+
+        }
+        return redirect()->back()->with('success', 'news published successfully!');
     }
 
     /**

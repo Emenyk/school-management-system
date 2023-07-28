@@ -13,36 +13,33 @@
                         <div class="sparkline9-graph">
                             <div class="static-table-list">
                                 <table class="table sparkle-table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Data</th>
-                                            <th>User</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <form action="{{ url('dashboard/attendanceStore') }}" method="POST" >
+                                    
+                                    <form action="{{ route('attendance.store') }}" method="POST" >
                                         @csrf
-                                        <tr>
-                                            <td colspan="4">
-                                                <div class="form-select-list">
-                                                    <select class="form-control custom-select-value" name="subject">
-                                                        @if (count($subjects) > 0)
-                                                        @foreach ($subjects as $subject)
-                                                        <option value="$subject->id">{{ $subject->name }}</option>
+                                            <div class="form-select-list">
+                                                <select class="form-control custom-select-value" name="subject">
+                                                    @if (count($subjects) > 0)
+                                                    @foreach ($subjects as $subject)
+                                                    <option value="$subject->id">{{ $subject->name }}</option>
 
-                                                        @endforeach
-                                                        @else
-                                                        <option>no subjects</option>
-                                                        @endif
-                                                        </select>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    @endforeach
+                                                    @else
+                                                    <option>no subjects</option>
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        
+                                        <thead>
+                                            <tr>
+                                                <th>Roll No</th>
+                                                <th>Data</th>
+                                                <th>Student</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                         @if(count($students) > 0)
                                         @foreach ($students as $student)
-
                                         <tr>
                                             <td>{{ $student->id }}</td>
                                             <td><input type="checkbox" value="1" name="marks[]" id="">
@@ -57,7 +54,11 @@
                                         </tr>
                                         @endif
                                         <tr>
+                                            @if (count($subjects) < 1)
+                                            <td><input type="submit" disabled value="Submit" class="btn btn-warning"></td>
+                                            @else   
                                             <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+                                            @endif
                                             <td></td>
                                             <td></td>
                                             <td></td>

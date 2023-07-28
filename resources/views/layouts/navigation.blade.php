@@ -83,7 +83,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a title="event" href="{{ route('event.index') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News</span></a>
+                        <a title="event" href="{{ route('news.create') }}" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">News</span></a>
                     </li>
 
                 </ul>

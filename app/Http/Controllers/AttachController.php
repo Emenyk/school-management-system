@@ -25,7 +25,7 @@ class AttachController extends Controller
         $classroom = Classroom::findOrFail($classroomId);
         foreach ($attachs as $key => $attach) {
             $student = Student::find($attach);
-            $student->classroom()->associate($student->id);
+            $student->classroom()->associate($classroom);
             $student->save();
         }
 
@@ -47,8 +47,8 @@ class AttachController extends Controller
         $classroomId = $request->classroom;
         $classroom = Classroom::findOrFail($classroomId);
         foreach ($attachs as $key => $attach) {
-            $subject = Subject::find($attach);
-            $subject->classroom()->associate($classroom);
+            $classroom->subjects()->attach($attach);
+
         }
 
         return redirect()->route('subjects.index')->with('success', 'subject/subjects has been assigned classroom successfully!');
@@ -92,6 +92,7 @@ class AttachController extends Controller
         $parent = Parents::findOrFail($parentId);
         foreach ($attachs as $key => $attach) {
             $parent->students()->attach($attach);
+
         }
 
         return redirect()->route('students.index')->with('success', 'student/students has been assigned to parent successfully!');

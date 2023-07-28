@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('body');
+            $table->string('attachment')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('teacher_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');

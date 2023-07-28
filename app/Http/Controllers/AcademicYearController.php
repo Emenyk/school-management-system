@@ -30,6 +30,7 @@ class AcademicYearController extends Controller
     {
         $academicSession = new AcademicYear();
         $academicSession->academicYear = $request->academicYear;
+        $academicSession->term = $request->term;
         $academicSession->save();
         return redirect()->back()->with('success', 'the academic year has been added successfully');
     }

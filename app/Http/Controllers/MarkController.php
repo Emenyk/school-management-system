@@ -41,7 +41,9 @@ class MarkController extends Controller
     }
 
     public function store(Request $request){
-        $grades = $request->input('marks');
+        $assignment = $request->input('assignment');
+        $test = $request->input('test');
+        $exam = $request->input('exam');
         $students = $request->input('students');
 
         foreach ($students as $index => $student) {
@@ -50,7 +52,9 @@ class MarkController extends Controller
             $studentMark->type = $request->type;
             $studentMark->student_id = $student;
             $studentMark->subject_id = $request->subject;
-            $studentMark->mark = $grades[$index];
+            $studentMark->assignment = $assignment[$index];
+            $studentMark->test = $test[$index];
+            $studentMark->exam = $exam[$index];
             $studentMark->save();
         }
 
