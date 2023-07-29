@@ -80,7 +80,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <input type="text" value="2023/2024" name="session" hidden>
+                                            @isset($acadYear)
+                                            <input id="session" type="number" value="{{ $acadYear->id }}" name="session" hidden>
+                                            @endisset
+                                            @empty ($acadYear)
+                                            <li style="color: red">please ask the admin to add an academic year to enable you record result</li>
+                                            @endempty
                                         </tr>
                                         @foreach ($students as $student)
                                         <tr>

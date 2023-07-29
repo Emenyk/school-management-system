@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicYear;
 use App\Models\School\Classroom;
 use App\Models\School\Mark;
 use Illuminate\Support\Str;
@@ -19,9 +20,9 @@ class MarkController extends Controller
     }
 
     public function create(){
-        $classrooms = Classroom::all();
         return view('mark.create', [
-            'classrooms' => $classrooms
+            'classrooms' => Classroom::all(),
+
         ]);
     }
 
@@ -35,6 +36,7 @@ class MarkController extends Controller
             return view('mark.create', [
                 'students' => $students,
                 'subjects' => $subjects,
+                'acadYear' => AcademicYear::latest()->first()
             ]);
         }
         return redirect()->back()->with('error', 'Invalid classroom selected.');
@@ -48,7 +50,7 @@ class MarkController extends Controller
 
         foreach ($students as $index => $student) {
             $studentMark = new Mark();
-            $studentMark->session = $request->session;
+            $studentMark->academicYear_id = $request->session;
             $studentMark->type = $request->type;
             $studentMark->student_id = $student;
             $studentMark->subject_id = $request->subject;

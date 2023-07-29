@@ -3,7 +3,6 @@
 namespace Database\Factories\School;
 
 use App\Models\School\Student;
-use App\Models\School\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,13 +19,13 @@ class markFactory extends Factory
     {
         $studentRandomIds = Student::pluck('id')->toArray();
         return [
-            'session' => '2023/2024',
             'type' => 'first term',
             'assignment' => fake()->randomFloat(2, 0, 20),
             'test' => fake()->randomFloat(2, 0, 20),
             'exam' => fake()->randomFloat(2, 0, 60),
+            'academic_year_id' => 1,
             'student_id' => fake()->randomElement($studentRandomIds),
-            'subject_id' => null,
+            'subject_id' => 1,
 
         ];
     }

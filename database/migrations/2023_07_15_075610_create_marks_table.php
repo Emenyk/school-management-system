@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('marks', function (Blueprint $table) {
-            $table->id();
-            $table->string('session');
-            $table->string('type');
-            $table->float('assignment');
-            $table->float('test');
-            $table->float('exam');
-            $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('marks')){
+            Schema::create('marks', function (Blueprint $table) {
+                $table->id();
+                $table->string('type');
+                $table->float('assignment');
+                $table->float('test');
+                $table->float('exam');
+                $table->foreignId('academic_year_id')->nullable();
+                $table->foreignId('student_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -30,11 +31,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('marks', function(Blueprint $table){
-            $table->dropForeign('marks_student_id_foreign');
-            $table->dropForeign('marks_subject_id_foreign');
+        // Schema::table('marks', function(Blueprint $table){
+        //     $table->dropForeign('marks_academicYear_id_foreign');
+        //     $table->dropForeign('marks_student_id_foreign');
+        //     $table->dropForeign('marks_subject_id_foreign');
 
-        });
+        // });
         Schema::dropIfExists('marks');
     }
 };

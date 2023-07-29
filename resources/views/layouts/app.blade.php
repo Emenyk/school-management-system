@@ -131,9 +131,9 @@
                                                                                 <input class="form-control" type="text" name="academicYear" placeholder=" eg 2023/2024">
                                                                                 <br>
                                                                                 <select name="term" class="form-control" id="term">
-                                                                                    <option value="">first term</option>
-                                                                                    <option value="">second term</option>
-                                                                                    <option value="">third term</option>
+                                                                                    <option>first term</option>
+                                                                                    <option>second term</option>
+                                                                                    <option>third term</option>
                                                                                 </select>
                                                                                 <br>
                                                                                 <input class="btn btn-success " type="submit" value="Submit">

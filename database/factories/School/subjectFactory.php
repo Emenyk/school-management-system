@@ -21,7 +21,7 @@ class subjectFactory extends Factory
 
             'name' => fake()->randomElement(            [
                 'Mathematics',
-                'Science',
+                'Agriculture',
                 'History',
                 'English',
                 'Geography',
@@ -29,7 +29,8 @@ class subjectFactory extends Factory
                 'Chemistry',
                 'Biology',
                 'Computer Science',
-                'Literature'
+                'Literature',
+                'CRS',
             ]),
             'image' => null, // Replace null with your desired default image path if needed
             'description' => fake()->text(),

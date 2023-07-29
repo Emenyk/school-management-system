@@ -2,6 +2,7 @@
 
 namespace App\Models\School;
 
+use App\Models\AcademicYear;
 use App\Models\School\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,9 @@ class Mark extends Model
     protected $fillable = [
         'session',
         'type',
-        'marks',
+        'assignment',
+        'test',
+        'exam',
         'subject',
         'students',
     ];
@@ -26,5 +29,9 @@ class Mark extends Model
     public function subject():BelongsTo
     {
         return $this->belongsTo(Subject::class);
+    }
+    public function academicYear():BelongsTo
+    {
+        return $this->belongsTo(AcademicYear::class);
     }
 }

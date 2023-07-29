@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AcademicYear;
 use App\Models\School\Attend;
 use App\Models\School\Classroom;
 use App\Models\School\Library;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        AcademicYear::factory()->create();
         \App\Models\User::factory(10)->create();
         Classroom::factory(10)->create();
         Student::factory(10)->create();
@@ -32,7 +34,7 @@ class DatabaseSeeder extends Seeder
         Mark::factory(10)->create([
             'subject_id' => 4
         ]);
-        
+
 
         $student = Student::find(1);
         $student->classroom_id = 1;

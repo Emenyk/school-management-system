@@ -32,7 +32,7 @@ class AcademicYearController extends Controller
         $academicSession->academicYear = $request->academicYear;
         $academicSession->term = $request->term;
         $academicSession->save();
-        return redirect()->back()->with('success', 'the academic year has been added successfully');
+        return redirect()->route('dashboard')->with('success', 'the academic year has been added successfully');
     }
 
     /**

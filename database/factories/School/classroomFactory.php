@@ -21,14 +21,14 @@ class classroomFactory extends Factory
             'name' => fake()->randomElement([
                 'JSS1A',
                 'JSS2B',
-                'JSS3C',
-                'SS1D',
-                'SS2E',
-                'SS3F',
-                'JSS1G',
-                'JSS2H',
-                'JSS3I',
-                '1SS1J'
+                'JSS3B',
+                'SS1A',
+                'SS2',
+                'SS3',
+                'JSS1B',
+                'JSS2A',
+                'JSS3A',
+                'SS1B'
             ]),
             'classTeacher' => fake()->name(),
             'status' => fake()->randomElement(['active', 'inactive']),
