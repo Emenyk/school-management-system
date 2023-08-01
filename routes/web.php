@@ -16,6 +16,8 @@ use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PinController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +30,7 @@ use App\Http\Controllers\ParentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'home']);
 Route::view('lock','admin.index')->name('lock');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 // ->middleware(['auth', 'verified'])->name('dashboard');
@@ -69,7 +69,9 @@ Route::prefix('dashboard')->group(function () {
     Route::post('assign/teacher', [AttachController::class, 'attachToTeacher'])->name('teacherToSubject');
     Route::get('assign/parent', [AttachController::class, 'forParent'])->name('parent.student');
     Route::post('assign/parent', [AttachController::class, 'attachToParent'])->name('parentToStudent');
+    Route::get('pin', [PinController::class, 'generateResultPin'])->name('generate.pin');
 });
+Route::post('pin', [PinController::class, 'evaluatePin'])->name('evaluate.pin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

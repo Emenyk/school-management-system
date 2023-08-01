@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SMS</title>
+	<title>Home | University of Nigeria Secondary School</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -57,44 +57,54 @@
 								</li>
 							</ul>
 							<div class="tg-themedropdown tg-languagesdropdown">
-								<a href="javascript:void(0);" id="tg-languages" class="tg-btndropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<span>
-										<i class="fa fa-user"></i>
+                                @if (auth('student')->check())
+                                    <p>{{ auth('student')->user()->name }}!</p>
+                                @elseif (auth('parents')->check())
+                                    <p>{{ auth('parents')->user()->name }}!</p>
+                                @elseif (auth('teacher')->check())
+                                    <p>{{ auth('teacher')->user()->name }}!</p>
+                                @elseif (auth()->check())
+                                    <p>{{ auth()->user()->name }}!</p>
 
+                                @else
+								<a href="javascript:void(0);" id="tg-languages" class="tg-btndropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span>
+                                        <i class=" fa fa-user"></i>
 									</span>
 									<span>Login</span>
 								</a>
 								<div class="tg-themedropdownbox" aria-labelledby="tg-languages">
-									<ul class="tg-languageslist">
-										<li>
+                                    <ul class="tg-languageslist">
+                                        <li>
                                             <span><a href="{{ route('login') }}">Admin</a> <i class="fa fa-user" style="margin-left: 14px"></i></span>
 
 										</li>
 										<li>
-											{{-- <span></span> --}}
-											<span><a href="{{ route('student.login') }}">Student</a> <i class="fa fa-user" style="margin-left: 6px"></i></span>
+
+                                            <span><a href="{{ route('student.login') }}">Student</a> <i class="fa fa-user" style="margin-left: 6px"></i></span>
 										</li>
 										<li>
-											{{-- <span></span> --}}
-											<span><a href="{{ route('teacher.login') }}">Teacher</a> <i class="fa fa-user" style="margin-left: 5px"></i></span>
+
+                                            <span><a href="{{ route('teacher.login') }}">Teacher</a> <i class="fa fa-user" style="margin-left: 5px"></i></span>
 										</li>
 										<li>
-											{{-- <span><i class="fa fa-user" style="margin-left: 5px"></i></span> --}}
-											<span><a href="{{ route('parents.login') }}">Parent</a> <i class="fa fa-user" style="margin-left: 13px"></i></span>
+
+                                            <span><a href="{{ route('parents.login') }}">Parent</a> <i class="fa fa-user" style="margin-left: 13px"></i></span>
 										</li>
 									</ul>
 								</div>
+                                @endif
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<div class="container">
+			{{-- <div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="tg-navigationarea">
-							<strong class="tg-logo"><a href="index-2.html"><img src="{{ asset('home/images/un-logo.j') }}" alt="University of Nigeria Secondary School"></a></strong>
+							<strong class="tg-logo"><a href="/"><img height="30px" width="40px" src="{{ asset('home/images/unseclogo.png') }}" alt="University of Nigeria Secondary School"></a></strong>
 							<div class="tg-navigationandsearch">
 								<nav id="tg-nav" class="tg-nav">
 									<div class="navbar-header">
@@ -1814,7 +1824,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		</header>
 		<!--************************************
 				Header End
@@ -1823,43 +1833,27 @@
 				Home Slider Start
 		*************************************-->
 		<div id="tg-homeslider" class="tg-homeslider tg-homeslidervthree owl-carousel tg-btnround tg-haslayout">
+            <div class="item">
+				<figure>
+					<img src="{{ asset('home/images/unsecback.png') }}" alt="image description">
+					<figcaption class="tg-slidercontent">
+						<div class="tg-slidercontentbox">
+							<div class="container">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<h1>University of Nigeria <span>Secondary School</span></h1>
+										<a class="tg-btn" href="{{ route('dashboard') }}">Get Started</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</figcaption>
+				</figure>
+			</div>
+
 			<div class="item">
 				<figure>
 					<img src="{{ asset('home/images/slider/img-08.jpg') }}" alt="image description">
-					<figcaption class="tg-slidercontent">
-						<div class="tg-slidercontentbox">
-							<div class="container">
-								<div class="row">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<h1>Offering!<span>Best Teaching Skills</span></h1>
-										<a class="tg-btn" href="{{ route('dashboard') }}">Get Started</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="item">
-				<figure>
-					<img src="{{ asset('home/images/slider/img-07.jpg') }}" alt="image description">
-					<figcaption class="tg-slidercontent">
-						<div class="tg-slidercontentbox">
-							<div class="container">
-								<div class="row">
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<h1>Offering!<span>Best Teaching Skills</span></h1>
-										<a class="tg-btn" href="{{ route('dashboard') }}">Get Started</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
-			</div>
-			<div class="item">
-				<figure>
-					<img src="{{ asset('home/images/slider/img-09.jpg') }}" alt="image description">
 					<figcaption class="tg-slidercontent">
 						<div class="tg-slidercontentbox">
 							<div class="container">
@@ -1905,14 +1899,14 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<section class="tg-sectionspace tg-haslayout">
 								<div class="tg-shortcode tg-welcomeandgreeting tg-welcomeandgreeting-v2">
-									<figure><img src="{{ asset('home/images/img-03.jpg') }}" alt="image description"></figure>
+									<figure><img src="{{ asset('home/images/principal.png') }}" alt="image description"></figure>
 									<div class="tg-shortcodetextbox">
 										<h2>Welcome &amp; Greetings!</h2>
 										<div class="tg-description">
 											<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore et dolore amit agna aliqua enimnate minim veniam quis nostrud exercitation ullamco laboris nisi utiata ...</p>
 										</div>
-										<span class="tg-name">Prof. Donovan Bradburn</span>
-										<span class="tg-designation">Vice Chancellor</span>
+										<span class="tg-name">Eng. Miriam J. Godwill</span>
+										<span class="tg-designation">Principal</span>
 										<div class="tg-btnpluslogo">
 											<a class="tg-btn" href="javascript:void(0);">read more</a>
 											<strong class="tg-universitylogo"><a href="javascript:void(0);"><img src="{{ asset('home/images/logo2.png') }}" alt="image description"></a></strong>

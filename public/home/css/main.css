@@ -5,7 +5,7 @@
  is the file you need to edit to change the look of the
  theme.
  However we used Less script to make things easy to maintain, this is the compressed ourput, we recommend to edit the less files and then recombile the files and add the result here, if you don't like to use less you can edit this file here.
- 
+
  This files contents are outlined below.
  01.	Theme Reset Style
  02.	Global Elements
@@ -142,7 +142,7 @@ input:focus,
 	box-shadow: none !important;
 }
 /*======================
-		 Select 		
+		 Select
 ======================*/
 .tg-select{
 	width: 100%;
@@ -181,7 +181,7 @@ input:focus,
 }
 .tg-select select option{color:#666;}
 /*======================
-		CheckBox		
+		CheckBox
 ======================*/
 .tg-radio,
 .tg-radio label,
@@ -301,7 +301,7 @@ p ins { color: #666; }
 dl dd { margin-left: 20px; }
 address { font-style: italic; }
 /*==============================================
-			Global Elements						
+			Global Elements
 ==============================================*/
 .tg-haslayout{
 	width:100%;
@@ -499,7 +499,7 @@ li.tg-rss a{background:#ff6600;}
 	padding-left: 0;
 }
 /*==============================================
-			Theme Pagination					
+			Theme Pagination
 ==============================================*/
 .tg-pagination{
 	width:100%;
@@ -553,7 +553,7 @@ li.tg-rss a{background:#ff6600;}
 	background: #333;
 }
 /*==============================================
-			Theme BreadCrumb					
+			Theme BreadCrumb
 ==============================================*/
 .tg-breadcrumb {
 	margin:0;
@@ -634,7 +634,7 @@ li.tg-rss a{background:#ff6600;}
 .tg-prev:hover span:after,
 .tg-next:hover span:after{left:3px;}
 /*==============================================
-			Theme Style							
+			Theme Style
 ==============================================*/
 .tg-home{}
 .tg-wrapper{
@@ -985,7 +985,7 @@ body.tg-home .tg-main{padding: 20px 0;}
 .tg-inputwithicon .form-control,
 .tg-inputwithicon .tg-select select{padding-left: 45px;}
 /*==============================================
-			Header Style						
+			Header Style
 ==============================================*/
 .tg-header{
 	z-index: 100;
@@ -1442,7 +1442,7 @@ a[data-new]:before{
 	position:absolute;
 }
 /*==============================================
-			Slider Style						
+			Slider Style
 ==============================================*/
 .tg-homeslider{
 	width: 100%;
@@ -1578,7 +1578,7 @@ a[data-new]:before{
 	position: absolute;
 }
 /*==========================================================================================
-										Main Style											
+										Main Style
 ==========================================================================================*/
 .tg-shortcode{
 	width: 100%;
@@ -1953,7 +1953,7 @@ body.tg-home .tg-sidebar {padding: 20px 0 0;}
 	vertical-align:middle;
 }
 /*==========================================================================================
-										Footer Style										
+										Footer Style
 ==========================================================================================*/
 .tg-signupbox{
 	width: 100%;
@@ -2144,7 +2144,7 @@ body.tg-home .tg-sidebar {padding: 20px 0 0;}
 	display: block;
 }
 /*==========================================================================================
-									Home Page Version Two									
+									Home Page Version Two
 ==========================================================================================*/
 .tg-homebannervtwo{
 	clear: both;
@@ -2255,7 +2255,7 @@ body.tg-home .tg-sidebar {padding: 20px 0 0;}
 .tg-widgetquicklinksvtwo .tg-widgetcontent ul li:nth-child(7) a:before{content: '\ea26';}
 .tg-widgetquicklinksvtwo .tg-widgetcontent ul li:nth-child(8) a:before{content: '\e938';}
 /*==========================================================================================
-									Home Page Version Three									
+									Home Page Version Three
 ==========================================================================================*/
 body.tg-homethree,
 body.tg-homefour{background: none;}
@@ -2379,7 +2379,7 @@ body.tg-homefour .tg-wrapper{
 }
 .tg-homeslidervthree .owl-nav > div + div{float: right;}
 /*==========================================================================================
-									Home Page Version Four									
+									Home Page Version Four
 ==========================================================================================*/
 body.tg-homefour .tg-headervtwo{margin: 0;}
 body.tg-homefour .tg-headervtwo .tg-navigation > ul > li > a,
@@ -2426,7 +2426,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	background: #f7f7f7;
 }
 /*==========================================================================================================================
-													Pages Style Start Here													
+													Pages Style Start Here
 ==========================================================================================================================*/
 .tg-innerbanner{
 	width: 100%;
@@ -2450,7 +2450,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 .tg-widgetcontent .tg-campusleftthumb:first-child{padding: 0;}
 .tg-widgetlatestcourses .tg-campuscontent .tg-matadata{padding:0 0 10px;}
 /*======================================================================================
-									Course Grid Style									
+									Course Grid Style
 ======================================================================================*/
 .tg-resultandstyle{
 	width: 100%;
@@ -2498,7 +2498,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-courses .tg-course{padding: 15px 0;}
 /*======================================================================================
-									Course List Style									
+									Course List Style
 ======================================================================================*/
 .tg-list .tg-featuredimg{width: 405px;}
 .tg-list .tg-themepostcontent{
@@ -2534,7 +2534,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	text-overflow: ellipsis;
 }
 /*======================================================================================
-									Course Detail Style									
+									Course Detail Style
 ======================================================================================*/
 .tg-detailpage{
 	width: 100%;
@@ -2963,7 +2963,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	float: left;
 }
 /*======================================================================================
-									Events Pages Style									
+									Events Pages Style
 ======================================================================================*/
 .tg-widget.tg-widgettweets .tg-widgetcontent ul li:hover:before{background: none;}
 .tg-widget.tg-widgettweets .tg-widgetcontent ul li:hover:before{background: none;}
@@ -3094,7 +3094,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	float:left;
 }
 /*======================================================================================
-									Events Page Style									
+									Events Page Style
 ======================================================================================*/
 .tg-results{
 	width: 100%;
@@ -3186,7 +3186,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-result .tg-description p{margin: 0;}
 /*======================================================================================
-								Addmission Pages Style									
+								Addmission Pages Style
 ======================================================================================*/
 .tg-addmission{
 	width: 100%;
@@ -3376,7 +3376,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-addmission .tg-pagetitle h2{line-height:35px;}
 /*======================================================================================
-								Department Pages Style									
+								Department Pages Style
 ======================================================================================*/
 .tg-departmentscollapse .tg-themecollapsecontent ul li:first-child .tg-description {background: none;}
 .tg-departmentscollapse .tg-themecollapsecontent ul li span{
@@ -3446,7 +3446,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	border-bottom: 1px solid #dbdbdb;
 }
 /*======================================================================================
-								About Us Pages Style									
+								About Us Pages Style
 ======================================================================================*/
 .tg-widgetaboutusnav .tg-widgetcontent ul li + li{margin: 10px 0 0;}
 .tg-aboutus{
@@ -3621,7 +3621,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-campuslife .tg-description p:last-child{margin: 0;}
 /*======================================================================================
-								Faculties Pages Style									
+								Faculties Pages Style
 ======================================================================================*/
 .tg-faculties{
 	width:100%;
@@ -3718,7 +3718,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	position: absolute;
 }
 /*======================================================================================
-								Jobs Pages Style										
+								Jobs Pages Style
 ======================================================================================*/
 .tg-jobs{
 	width: 100%;
@@ -3757,7 +3757,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-jobdetail ul{margin: 0 0 20px;}
 /*======================================================================================
-								FAQ'S Page Style										
+								FAQ'S Page Style
 ======================================================================================*/
 .tg-titleborder{
 	margin: 0 0 20px;
@@ -3789,7 +3789,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 }
 .tg-faqscollapse .tg-description p:last-child{margin: 0;}
 /*======================================================================================
-								Gallery Page Style										
+								Gallery Page Style
 ======================================================================================*/
 .tg-gallerymasnory{
 	width: 100%;
@@ -3896,7 +3896,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	visibility: visible;
 }
 /*======================================================================================
-							News & Article Pages Style									
+							News & Article Pages Style
 ======================================================================================*/
 .tg-newsandarticle{
 	width: 100%;
@@ -4176,7 +4176,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 	resize: none;
 }
 /*======================================================================================
-									404 Page Style										
+									404 Page Style
 ======================================================================================*/
 .tg-404error{
 	width:100%;
@@ -4214,7 +4214,7 @@ body.tg-homefour .tg-headervtwo .tg-btnsearch{color: #333;}
 .tg-errorcontent .tg-description{margin:0 0 30px;}
 .tg-errorcontent .tg-description p{margin:0}
 /*======================================================================================
-									Comming Soon Style									
+									Comming Soon Style
 ======================================================================================*/
 body.tg-commingsoonpage .tg-header{margin:0;}
 body.tg-commingsoonpage .tg-main{padding:0;}
@@ -4287,7 +4287,7 @@ body.tg-commingsoonpage .tg-main{padding:0;}
 	font:300 30px/20px 'Work Sans', Arial, Helvetica, sans-serif;
 }
 /*======================================================================================
-									Contact Us Pages									
+									Contact Us Pages
 ======================================================================================*/
 .tg-contactus{
 	width: 100%;
@@ -4337,7 +4337,7 @@ body.tg-commingsoonpage .tg-main{padding:0;}
 	float:left;
 }
 /*======================================================================================
-								Campuses Pages Style									
+								Campuses Pages Style
 ======================================================================================*/
 .tg-maincampuses{
 	width:100%;
