@@ -12,7 +12,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        return view('news.index', [
+            'allNews' => News::orderByDesc('created_at')->paginate(5)
+        ]);
     }
 
     /**
@@ -41,7 +43,7 @@ class NewsController extends Controller
                     $attachment->storeAs('public/news', $attachmentName);
                     $news->attachment = $attachmentName;
                 }$news->save();
-            
+
             } catch (\Exception $e) {
                 // Handle the exception and push back to the page with an error message
                 return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
@@ -58,7 +60,7 @@ class NewsController extends Controller
                     $attachment->storeAs('public/news', $attachmentName);
                     $news->attachment = $attachmentName;
                 }$news->save();
-                
+
             } catch (\Exception $e) {
                 // Handle the exception and push back to the page with an error message
                 return redirect()->back()->with('error', 'Failed to publish the news. please try again.');
@@ -75,14 +77,14 @@ class NewsController extends Controller
                     $attachment->storeAs('public/news', $attachmentName);
                     $news->attachment = $attachmentName;
                 }$news->save();
-                
+
             } catch (\Exception $e) {
                 // Handle the exception and push back to the page with an error message
                 return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
             }
 
         }
-        return redirect()->back()->with('success', 'news published successfully!');
+        return redirect()->route('news.index')->with('success', 'news published successfully!');
     }
 
     /**

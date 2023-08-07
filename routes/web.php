@@ -69,7 +69,9 @@ Route::prefix('dashboard')->group(function () {
     Route::post('assign/teacher', [AttachController::class, 'attachToTeacher'])->name('teacherToSubject');
     Route::get('assign/parent', [AttachController::class, 'forParent'])->name('parent.student');
     Route::post('assign/parent', [AttachController::class, 'attachToParent'])->name('parentToStudent');
+    Route::get('pin/index', [PinController::class, 'index'])->name('pin.index');
     Route::get('pin', [PinController::class, 'generateResultPin'])->name('generate.pin');
+    Route::delete('pin/{pin}', [PinController::class, 'destroyResultPin'])->name('pin.destroy');
 });
 Route::post('pin', [PinController::class, 'evaluatePin'])->name('evaluate.pin');
 

@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class PinController extends Controller
 {
+    public function index(){
+        // $currentAcademicYear = AcademicYear::latest()->first();
+        return view('admin.pin.index', [
+            'pins' => Pin::orderByDesc('id')->paginate(10)
+        ]);
+    }
+
     public function generateResultPin()
     {
         $currentAcademicYear = AcademicYear::latest()->first();
@@ -22,9 +29,7 @@ class PinController extends Controller
             $pin->academic_year_id = $currentAcademicYear->id;
             $pin->save();
         }
-
-        $pins = Pin::where('academic_year_id', $currentAcademicYear->id)->get();
-        dd($pins);
+        return redirect()->route('pin.index')->with('success', 'The pin has been generated successfully');
     }
 
 
@@ -49,6 +54,12 @@ class PinController extends Controller
         }
 
 
+    }
+
+    public function destroyResultPin(Pin $pin)
+    {
+        $pin->delete();
+        return redirect()->back()->with('success', 'the pin has been deleted successfully!');
     }
 
 }
