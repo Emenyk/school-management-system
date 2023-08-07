@@ -53,7 +53,8 @@
             </div>
         </div>
     </div>
-    <div class="mailbox-compose-area mg-t-15 mg-b-15">
+    @if (auth('student')->check() || auth('parents')->check() || auth('teacher')->check() || auth()->check() )
+    <div class="mailbox-compose-area mg-t-15">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -134,7 +135,9 @@
             </div>
         </div>
     </div>
-    <div class="product-status mg-b-15">
+
+    @endif
+    <div class="product-status mg-b-15 mg-t-15">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

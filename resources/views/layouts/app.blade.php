@@ -53,6 +53,22 @@
                                                             <a href="{{ route('class.subject') }}" class="dropdown-item">Subjects to Class</a>
                                                         </div>
                                                     </li>
+                                                    <li class="nav-item dropdown res-dis-nn">
+                                                        @if (auth('student')->check() || auth('parents')->check() || auth('teacher')->check() || auth()->check() )
+
+                                                        @else
+
+                                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Login <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                                        <div role="menu" class="dropdown-menu animated zoomIn">
+                                                            <a href="{{ route('student.login') }}" class="dropdown-item">Student Login</a>
+                                                            <a href="{{ route('teacher.login') }}" class="dropdown-item">Teacher Login</a>
+                                                            <a href="{{ route('parents.login') }}" class="dropdown-item">Parent Login</a>
+                                                            <a href="{{ route('login') }}" class="dropdown-item">Admin Login</a>
+
+                                                        </div>
+                                                        @endif
+                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -116,7 +132,7 @@
                                                             <ul class="nav nav-tabs custon-set-tab">
                                                                 <li class="active"><a data-toggle="tab" href="#Notes">Academic session</a>
                                                                 </li>
-                                                                <li><a data-toggle="tab" href="#Projects">Events</a>
+                                                                <li><a data-toggle="tab" href="#Projects">Result Pin</a>
                                                                 </li>
                                                                 <li><a data-toggle="tab" href="#Settings">Make Admin</a>
                                                                 </li>
@@ -144,14 +160,23 @@
                                                                 </div>
                                                                 <div id="Projects" class="tab-pane fade">
                                                                     <div class="projects-settings-wrap">
-
+                                                                        <br>
+                                                                        <br>
+                                                                        <a href="{{ route('generate.pin') }}">
+                                                                            <input class="btn btn-success" type="submit" value="Generate Result Pins">
+                                                                        </a>
+                                                                        <a href="{{ route('generate.pin') }}">
+                                                                            <input class="btn btn-success" type="submit" value="View Result Pins">
+                                                                        </a>
 
                                                                     </div>
                                                                 </div>
                                                                 <div id="Settings" class="tab-pane fade">
                                                                     <div class="setting-panel-area">
-
-
+                                                                        <br>
+                                                                        <a href="{{ route('register') }}">
+                                                                            <input class="btn btn-success" type="submit" value="Create Admin">
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>

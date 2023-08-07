@@ -9,7 +9,9 @@ use Illuminate\Validation\Rules\Exists;
 class MemoController extends Controller
 {
     public function index(){
-        return view('memo.index');
+        return view('memo.index', [
+            'memos' => Memo::all()
+        ]);
     }
 
     public function create(){
@@ -61,9 +63,9 @@ class MemoController extends Controller
                     // Handle the exception and push back to the page with an error message
                     return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
                 }
-    
+
             }elseif ($request->input('parent')) {
-    
+
                 try {
                     $memo = new Memo();
                     $memo->subject = $request->subject;
@@ -81,9 +83,9 @@ class MemoController extends Controller
                     // Handle the exception and push back to the page with an error message
                     return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
                 }
-    
+
             }elseif ($request->input('teacher')) {
-    
+
                 try {
                     $memo = new Memo();
                     $memo->subject = $request->subject;
@@ -101,9 +103,9 @@ class MemoController extends Controller
                     // Handle the exception and push back to the page with an error message
                     return redirect()->back()->with('error', 'Failed to send the message. Please check who you are sending to.');
                 }
-    
+
             }elseif ($request->input('student')) {
-    
+
                 try {
                     $memo = new Memo();
                     $memo->subject = $request->subject;
@@ -121,7 +123,7 @@ class MemoController extends Controller
                     // Handle the exception and push back to the page with an error message
                     return redirect()->back()->with('error', 'Failed to save the memo to the database. Please try again.');
                 }
-    
+
             }
         }
 

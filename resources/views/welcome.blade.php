@@ -1879,8 +1879,8 @@
 								<div class="tg-description">
 									<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et enim ad minim veniam, quis nostrud exercitation.</p>
 								</div>
-							</div>
 
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1909,7 +1909,7 @@
 										<span class="tg-designation">Principal</span>
 										<div class="tg-btnpluslogo">
 											<a class="tg-btn" href="javascript:void(0);">read more</a>
-											<strong class="tg-universitylogo"><a href="javascript:void(0);"><img src="{{ asset('home/images/logo2.png') }}" alt="image description"></a></strong>
+											{{-- <strong class="tg-universitylogo"><a href="javascript:void(0);"><img src="{{ asset('home/images/logo2.png') }}" alt="image description"></a></strong> --}}
 										</div>
 									</div>
 								</div>
@@ -2082,7 +2082,8 @@
 											<h2>Latest News</h2>
 										</div>
 										<div id="tg-latestnewsslider" class="tg-latestnewsslider owl-carousel tg-posts">
-											<div class="item">
+                                            @foreach ($latestNews as $news)
+                                            <div class="item">
 												<article class="tg-themepost tg-newspost">
 													<figure class="tg-featuredimg">
 														<a href="javascript:void(0);">
@@ -2094,144 +2095,23 @@
 															<li>
 																<a href="javascript:void(0);">
 																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
+																	<span>{{ $news->created_at }}</span>
 																</a>
 															</li>
 														</ul>
 														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Allotment of Hostel Accommodation 2017!</a></h3>
+															<h3><a href="javascript:void(0);">{{ $news->title }}</a></h3>
 														</div>
 														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
+															<p> <a href="javascript:void(0);">Read</a></p>
 														</div>
 													</div>
 												</article>
 											</div>
-											<div class="item">
-												<article class="tg-themepost tg-newspost">
-													<figure class="tg-featuredimg">
-														<a href="javascript:void(0);">
-															<img src="{{ asset('home/images/themepost/img-06.jpg') }}" alt="image description">
-														</a>
-													</figure>
-													<div class="tg-themepostcontent">
-														<ul class="tg-matadata">
-															<li>
-																<a href="javascript:void(0);">
-																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
-																</a>
-															</li>
-														</ul>
-														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Notification of Mid Term Examinations</a></h3>
-														</div>
-														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
-														</div>
-													</div>
-												</article>
-											</div>
-											<div class="item">
-												<article class="tg-themepost tg-newspost">
-													<figure class="tg-featuredimg">
-														<a href="javascript:void(0);">
-															<img src="{{ asset('home/images/themepost/img-07.jpg') }}" alt="image description">
-														</a>
-													</figure>
-													<div class="tg-themepostcontent">
-														<ul class="tg-matadata">
-															<li>
-																<a href="javascript:void(0);">
-																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
-																</a>
-															</li>
-														</ul>
-														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Invites Application for Admission in Designing Program</a></h3>
-														</div>
-														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
-														</div>
-													</div>
-												</article>
-											</div>
-											<div class="item">
-												<article class="tg-themepost tg-newspost">
-													<figure class="tg-featuredimg">
-														<a href="javascript:void(0);">
-															<img src="{{ asset('home/images/themepost/img-05.jpg') }}" alt="image description">
-														</a>
-													</figure>
-													<div class="tg-themepostcontent">
-														<ul class="tg-matadata">
-															<li>
-																<a href="javascript:void(0);">
-																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
-																</a>
-															</li>
-														</ul>
-														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Allotment of Hostel Accommodation 2017!</a></h3>
-														</div>
-														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
-														</div>
-													</div>
-												</article>
-											</div>
-											<div class="item">
-												<article class="tg-themepost tg-newspost">
-													<figure class="tg-featuredimg">
-														<a href="javascript:void(0);">
-															<img src="{{ asset('home/images/themepost/img-06.jpg') }}" alt="image description">
-														</a>
-													</figure>
-													<div class="tg-themepostcontent">
-														<ul class="tg-matadata">
-															<li>
-																<a href="javascript:void(0);">
-																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
-																</a>
-															</li>
-														</ul>
-														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Notification of Mid Term Examinations</a></h3>
-														</div>
-														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
-														</div>
-													</div>
-												</article>
-											</div>
-											<div class="item">
-												<article class="tg-themepost tg-newspost">
-													<figure class="tg-featuredimg">
-														<a href="javascript:void(0);">
-															<img src="{{ asset('home/images/themepost/img-07.jpg') }}" alt="image description">
-														</a>
-													</figure>
-													<div class="tg-themepostcontent">
-														<ul class="tg-matadata">
-															<li>
-																<a href="javascript:void(0);">
-																	<i class="fa fa-calendar"></i>
-																	<span>Tuesday, Apr 21, 2017</span>
-																</a>
-															</li>
-														</ul>
-														<div class="tg-themeposttitle">
-															<h3><a href="javascript:void(0);">Invites Application for Admission in Designing Program</a></h3>
-														</div>
-														<div class="tg-description">
-															<p>Consectetur adipisicing elit sed do eiusmod tempor inunt labore... <a href="javascript:void(0);">Read More</a></p>
-														</div>
-													</div>
-												</article>
-											</div>
+
+                                            @endforeach
+
+
 										</div>
 										<div class="tg-btnsbox">
 											<a class="tg-btn" href="javascript:void(0);">view all news</a>

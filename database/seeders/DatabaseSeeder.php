@@ -13,7 +13,9 @@ use App\Models\School\Parents;
 use App\Models\School\Student;
 use App\Models\School\Subject;
 use App\Models\School\Teacher;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +25,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         AcademicYear::factory()->create();
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Admin Bola',
+            'email' => 'adminbola@gmail.com',
+            'password' => Hash::make('adminpassword')
+        ]);
         Classroom::factory(10)->create();
         Student::factory(10)->create();
         Teacher::factory(10)->create();

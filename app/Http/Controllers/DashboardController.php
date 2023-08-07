@@ -18,14 +18,65 @@ class DashboardController extends Controller
         $allSubjects = Subject::all()->count();
         $todaysAttendance = Attend::whereDate('created_at', today())->count();
         $todaysAttendance > 0 ? $attendancePercentage = ($todaysAttendance / $allStudents) * 100 : $attendancePercentage = 0;
-        return view('dashboard', [
-            'todaysAttendance' => $todaysAttendance,
-            'attendancePercentage' => floor($attendancePercentage),
-            'allStudents' => $allStudents,
-            'allTeachers' => $allTeachers,
-            'allSubjects' => $allSubjects,
-            'classrooms' => Classroom::paginate(5),
-            'memos' => Memo::orderByDesc('created_at')->take(5)->get(),
-        ]);
+        if (auth()->check()) {
+            # code...
+            return view('dashboard', [
+                'todaysAttendance' => $todaysAttendance,
+                'attendancePercentage' => floor($attendancePercentage),
+                'allStudents' => $allStudents,
+                'allTeachers' => $allTeachers,
+                'allSubjects' => $allSubjects,
+                'classrooms' => Classroom::paginate(5),
+                'memos' => Memo::where('user_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+            ]);
+        }
+        elseif (auth('student')->check()) {
+            # code...
+            return view('dashboard', [
+                'todaysAttendance' => $todaysAttendance,
+                'attendancePercentage' => floor($attendancePercentage),
+                'allStudents' => $allStudents,
+                'allTeachers' => $allTeachers,
+                'allSubjects' => $allSubjects,
+                'classrooms' => Classroom::paginate(5),
+                'memos' => Memo::where('student_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+            ]);
+        }
+        elseif (auth('parents')->check()) {
+            # code...
+            return view('dashboard', [
+                'todaysAttendance' => $todaysAttendance,
+                'attendancePercentage' => floor($attendancePercentage),
+                'allStudents' => $allStudents,
+                'allTeachers' => $allTeachers,
+                'allSubjects' => $allSubjects,
+                'classrooms' => Classroom::paginate(5),
+                'memos' => Memo::where('parents_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+            ]);
+        }
+        elseif (auth('teacher')->check()) {
+            # code...
+            return view('dashboard', [
+                'todaysAttendance' => $todaysAttendance,
+                'attendancePercentage' => floor($attendancePercentage),
+                'allStudents' => $allStudents,
+                'allTeachers' => $allTeachers,
+                'allSubjects' => $allSubjects,
+                'classrooms' => Classroom::paginate(5),
+                'memos' => Memo::where('teacher_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+            ]);
+        }
+        else {
+            # code...
+            return view('dashboard', [
+                'todaysAttendance' => $todaysAttendance,
+                'attendancePercentage' => floor($attendancePercentage),
+                'allStudents' => $allStudents,
+                'allTeachers' => $allTeachers,
+                'allSubjects' => $allSubjects,
+                'classrooms' => Classroom::paginate(5),
+
+            ]);
+        }
     }
 }
