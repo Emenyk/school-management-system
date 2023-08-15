@@ -49,7 +49,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('memo', [MemoController::class, 'index'] )->name('memo.index');
     Route::get('memo/create', [MemoController::class, 'create'] )->name('memo.create');
     Route::post('memo/store', [MemoController::class, 'store'] )->name('memo.store');
-    Route::get('memo/show', [MemoController::class, 'show'] )->name('memo.show');
+    Route::get('memo/show/{memo}', [MemoController::class, 'show'] )->name('memo.show');
     Route::view('event', 'event.index')->name('event.index');
     Route::get('input/mark', [MarkController::class, 'create'])->name('input.mark');
     Route::post('input/mark', [MarkController::class, 'store'])->name('input.mark');

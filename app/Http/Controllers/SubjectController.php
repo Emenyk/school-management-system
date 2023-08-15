@@ -24,7 +24,11 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('Subject.create');
+        if (auth()->user()) {
+            return view('Subject.create');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -63,9 +67,13 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        return view('Subject.edit', [
-            'subject' => $subject
-        ]);
+        if (auth()->user()) {
+            return view('Subject.edit', [
+                'subject' => $subject
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -98,13 +106,17 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        // Delete the associated image if it exists
-        if ($subject->image) {
-            Storage::delete('public/images/subjects/' . $subject->image);
+        if (auth()->user()) {
+            // Delete the associated image if it exists
+            if ($subject->image) {
+                Storage::delete('public/images/subjects/' . $subject->image);
+            }
+            $subject->delete();
+            // You can add any additional logic or redirect here if needed
+            return redirect()->route('subjects.index')->with('success', 'Subject deleted successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $subject->delete();
-        // You can add any additional logic or redirect here if needed
-        return redirect()->route('subjects.index')->with('success', 'Subject deleted successfully!');
 
     }
 }

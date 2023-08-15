@@ -27,7 +27,11 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teacher.create');
+        if (auth()->user()) {
+            return view('teacher.create');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -35,26 +39,30 @@ class TeacherController extends Controller
      */
     public function store(StoreteacherRequest $request)
     {
-        // Create a new user instance using the validated data
-        $teacher = new Teacher();
-        $teacher->name = $request->name;
-        $teacher->email = $request->email;
-        $teacher->password = bcrypt($request->password);
-        $teacher->DOB = $request->DOB;
-        $teacher->gender = $request->gender;
-        $teacher->address = $request->address;
-        $teacher->telephone = $request->telephone;
-        if ($request->hasFile('image')) {
+        if (auth()->user()) {
+            // Create a new user instance using the validated data
+            $teacher = new Teacher();
+            $teacher->name = $request->name;
+            $teacher->email = $request->email;
+            $teacher->password = bcrypt($request->password);
+            $teacher->DOB = $request->DOB;
+            $teacher->gender = $request->gender;
+            $teacher->address = $request->address;
+            $teacher->telephone = $request->telephone;
+            if ($request->hasFile('image')) {
 
-            $image = $request->file('image');
-            $imageName = time().'.'.$image->extension();
-            $image->storeAs('public/images/teachers', $imageName);
-            $teacher->image = $imageName;
+                $image = $request->file('image');
+                $imageName = time().'.'.$image->extension();
+                $image->storeAs('public/images/teachers', $imageName);
+                $teacher->image = $imageName;
+            }
+            $teacher->save();
+
+            // Redirect the user to a success page
+            return redirect()->back()->with('success', 'Teacher updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $teacher->save();
-
-        // Redirect the user to a success page
-        return redirect()->back()->with('success', 'Teacher updated successfully!');
 
     }
 
@@ -73,9 +81,13 @@ class TeacherController extends Controller
      */
     public function edit(teacher $teacher)
     {
-        return view('teacher.edit', [
-            'teacher' => $teacher
-        ]);
+        if (auth()->user()) {
+            return view('teacher.edit', [
+                'teacher' => $teacher
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -83,26 +95,30 @@ class TeacherController extends Controller
      */
     public function update(UpdateteacherRequest $request, teacher $teacher)
     {
-        $teacher->name = $request->name;
-        $teacher->email = $request->email;
-        $teacher->password = bcrypt($request->password);
-        $teacher->DOB = $request->DOB;
-        $teacher->gender = $request->gender;
-        $teacher->address = $request->address;
-        $teacher->telephone = $request->telephone;
-        if ($request->hasFile('image')) {
-            // Delete the previous image if it exists
-            if ($teacher->image) {
-                Storage::delete('public/images/teachers/' . $teacher->image);
+        if (auth()->user()) {
+            $teacher->name = $request->name;
+            $teacher->email = $request->email;
+            $teacher->password = bcrypt($request->password);
+            $teacher->DOB = $request->DOB;
+            $teacher->gender = $request->gender;
+            $teacher->address = $request->address;
+            $teacher->telephone = $request->telephone;
+            if ($request->hasFile('image')) {
+                // Delete the previous image if it exists
+                if ($teacher->image) {
+                    Storage::delete('public/images/teachers/' . $teacher->image);
+                }
+                $image = $request->file('image');
+                $imageName = time().'.'.$image->extension();
+                $image->storeAs('public/images/teachers', $imageName);
+                $teacher->image = $imageName;
             }
-            $image = $request->file('image');
-            $imageName = time().'.'.$image->extension();
-            $image->storeAs('public/images/teachers', $imageName);
-            $teacher->image = $imageName;
+            $teacher->update();
+            // You can add any additional logic or redirect here if needed
+            return redirect()->back()->with('success', 'Teacher updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $teacher->update();
-        // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Teacher updated successfully!');
     }
 
     /**
@@ -110,13 +126,17 @@ class TeacherController extends Controller
      */
     public function destroy(teacher $teacher)
     {
-        // Delete the associated image if it exists
-        if ($teacher->image) {
-            Storage::delete('public/images/teachers/' . $teacher->image);
+        if (auth()->user()) {
+            // Delete the associated image if it exists
+            if ($teacher->image) {
+                Storage::delete('public/images/teachers/' . $teacher->image);
+            }
+            $teacher->delete();
+            // You can add any additional logic or redirect here if needed
+            return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $teacher->delete();
-        // You can add any additional logic or redirect here if needed
-        return redirect()->route('teachers.index')->with('success', 'Teacher deleted successfully!');
     }
 
 }

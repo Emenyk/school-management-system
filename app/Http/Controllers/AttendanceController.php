@@ -9,25 +9,32 @@ use App\Models\School\Classroom;
 class AttendanceController extends Controller
 {
     public function getStudents(Request $request){
-
-        $classroomId = $request->classroom;
-        $classroom = Classroom::find($classroomId);
-         if ($classroom) {
-            $students = $classroom->students;
-            $subjects = $classroom->subjects;
-            return view('Attendance.show', [
-                'students' => $students,
-                'subjects' => $subjects
-            ]);
+        if (auth()->user() || auth('teacher')->user()) {
+            $classroomId = $request->classroom;
+            $classroom = Classroom::find($classroomId);
+             if ($classroom) {
+                $students = $classroom->students;
+                $subjects = $classroom->subjects;
+                return view('Attendance.show', [
+                    'students' => $students,
+                    'subjects' => $subjects
+                ]);
+            }
+            return redirect()->back()->with('error', 'Invalid classroom selected.');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        return redirect()->back()->with('error', 'Invalid classroom selected.');
     }
 
     public function create(){
-        $classrooms = Classroom::all();
-        return view('Attendance.create', [
-            'classrooms' => $classrooms
-        ]);
+        if (auth()->user() || auth('teacher')->user()) {
+            $classrooms = Classroom::all();
+            return view('Attendance.create', [
+                'classrooms' => $classrooms
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     public function store(Request $request){

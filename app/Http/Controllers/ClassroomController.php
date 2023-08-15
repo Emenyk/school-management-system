@@ -25,7 +25,11 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        return view('classroom.create');
+        if (auth()->user()) {
+            return view('classroom.create');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -67,9 +71,13 @@ class ClassroomController extends Controller
      */
     public function edit(classroom $classroom)
     {
-        return view('classroom.edit', [
-            'classroom' => $classroom
-        ]);
+        if (auth()->user()) {
+            return view('classroom.edit', [
+                'classroom' => $classroom
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -96,13 +104,17 @@ class ClassroomController extends Controller
      */
     public function destroy(classroom $classroom)
     {
-        // Delete the associated image file if it exists
-        if ($classroom->image) {
-            Storage::delete('public/images/classrooms/' . $classroom->image);
+        if (auth()->user()) {
+            // Delete the associated image file if it exists
+            if ($classroom->image) {
+                Storage::delete('public/images/classrooms/' . $classroom->image);
+            }
+            $classroom->delete();
+             // You can add any additional logic or redirect here if needed
+            return redirect()->route('classrooms.index')->with('success', 'Classroom deleted successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $classroom->delete();
-         // You can add any additional logic or redirect here if needed
-        return redirect()->route('classrooms.index')->with('success', 'Classroom deleted successfully!');
 
     }
 }

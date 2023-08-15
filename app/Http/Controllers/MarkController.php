@@ -15,15 +15,17 @@ class MarkController extends Controller
     }
 
     public function show(Request $request){
-        dd($request);
         return view('mark.show');
     }
 
     public function create(){
-        return view('mark.create', [
-            'classrooms' => Classroom::all(),
-
-        ]);
+        if (auth()->user() || auth('teacher')->user()) {
+            return view('mark.create', [
+                'classrooms' => Classroom::all(),
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     public function recordMark(Request $request)
@@ -33,6 +35,7 @@ class MarkController extends Controller
         if($classroom) {
             $students = $classroom->students;
             $subjects = $classroom->subjects;
+            // dd(AcademicYear::latest()->first());
             return view('mark.create', [
                 'students' => $students,
                 'subjects' => $subjects,
@@ -50,7 +53,7 @@ class MarkController extends Controller
 
         foreach ($students as $index => $student) {
             $studentMark = new Mark();
-            $studentMark->academicYear_id = $request->session;
+            $studentMark->academic_year_id = $request->session;
             $studentMark->type = $request->type;
             $studentMark->student_id = $student;
             $studentMark->subject_id = $request->subject;

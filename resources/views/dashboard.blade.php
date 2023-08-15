@@ -2,6 +2,7 @@
     <div class="analytics-sparkle-area">
         <div class="container-fluid">
             <div class="row">
+                @if (auth()->user() || auth('teacher')->user() || auth('student')->user() || auth('parents')->user())
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="analytics-sparkle-line reso-mg-b-30">
                         <div class="analytics-content">
@@ -14,6 +15,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="analytics-sparkle-line reso-mg-b-30">
                         <div class="analytics-content">
@@ -143,9 +145,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-status-wrap drp-lst">
                         <h4>Class List</h4>
+                        @auth
                         <div class="add-product">
                             <a href="{{ route('classrooms.create') }}">Add Classroom</a>
                         </div>
+                        @endauth
                         <div class="asset-inner">
                             <table>
                                 <tr>
@@ -154,7 +158,9 @@
                                     <th>Status</th>
                                     <th>Class Teacher</th>
                                     <th>No. of Students</th>
+                                    @auth
                                     <th>Setting</th>
+                                    @endauth
                                 </tr>
                                 @foreach ($classrooms as $classroom)
 
@@ -172,6 +178,7 @@
 
                                     {{-- <td>01962067309</td> --}}
                                     <td>{{ $classroom->students()->count() }}</td>
+                                    @auth
                                     <td style="display: flex">
                                         <a href="{{ route('classrooms.edit', ['classroom' => $classroom]) }}">
                                         <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -182,6 +189,9 @@
                                         <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                         </form>
                                     </td>
+                                    
+
+                                    @endauth
                                 </tr>
                                 @endforeach
 

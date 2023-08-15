@@ -42,7 +42,7 @@
                                                 <ul class="nav navbar-nav mai-top-nav">
                                                     <li class="nav-item"><a href="/" class="nav-link">Home</a>
                                                     </li>
-
+                                                    @auth
                                                     <li class="nav-item dropdown res-dis-nn">
                                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Assign <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
                                                         <div role="menu" class="dropdown-menu animated zoomIn">
@@ -53,6 +53,8 @@
                                                             <a href="{{ route('class.subject') }}" class="dropdown-item">Subjects to Class</a>
                                                         </div>
                                                     </li>
+
+                                                    @endauth
                                                     <li class="nav-item dropdown res-dis-nn">
                                                         @if (auth('student')->check() || auth('parents')->check() || auth('teacher')->check() || auth()->check() )
 
@@ -97,10 +99,20 @@
                                                             <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                         </a>
                                                         <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                            <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>
+                                                            {{-- <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>
+                                                            </li> --}}
+                                                            @auth('student')
+                                                            <li><a href="{{ route('students.show', ['student' => auth('student')->user()]) }}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                             </li>
-                                                            <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                            @endauth
+                                                            @auth('teacher')
+                                                            <li><a href="{{ route('teachers.show', ['teacher' => auth('teacher')->user()]) }}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                             </li>
+                                                            @endauth
+                                                            @auth('parents')
+                                                            <li><a href="{{ route('parents.show', ['parent' => auth('parents')->user()]) }}"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
+                                                            </li>
+                                                            @endauth
                                                             @if(auth()->user())
                                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                                 <span class="edu-icon edu-locked author-log-ic"></span>Logout</a>
@@ -126,6 +138,8 @@
 
                                                         </ul>
                                                     </li>
+                                                    @auth
+
                                                     <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-menu"></i></a>
 
                                                         <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
@@ -182,6 +196,7 @@
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    @endauth
                                                 </ul>
                                             </div>
                                         </div>
@@ -202,9 +217,9 @@
                                             <li><a data-toggle="collapse" data-target="#Charts" href="#">Dashboard <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                                 <ul class="collapse dropdown-header-top">
                                                     <li><a href="{{ route('dashboard') }}"><i class="fa fa-arrow-right"></i> </a></li>
-                                                    <li><a href="{{ route('result.check') }}">View Results</a></li>
-                                                    <li><a href="{{ route('student.attend') }}">Mark Attendance</a></li>
-                                                    <li><a href="{{ route('input.mark') }}">Assessment</a></li>
+                                                    <li><a href="{{ route('result.check') }}">Check Results</a></li>
+                                                    <li><a href="{{ route('student.attend') }}">Attendance</a></li>
+                                                    {{-- <li><a href="{{ route('input.mark') }}">Add mark</a></li> --}}
 
                                                 </ul>
                                             </li>
@@ -254,9 +269,9 @@
 
                                                 </ul>
                                             </li>
-                                            <li><a data-toggle="collapse" data-target="#demodepart" href="#">Message <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                            <li><a data-toggle="collapse" data-target="#demodepart" href="#">Chat <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                                 <ul id="demodepart" class="collapse dropdown-header-top">
-                                                    <li><a href="{{ route('memo.index') }}">all messages</a>
+                                                    <li><a href="{{ route('memo.index') }}">inbox</a>
                                                     </li>
                                                     <li><a href="{{ route('memo.create') }}">compose</a>
                                                     </li>

@@ -39,7 +39,7 @@ class DashboardController extends Controller
                 'allTeachers' => $allTeachers,
                 'allSubjects' => $allSubjects,
                 'classrooms' => Classroom::paginate(5),
-                'memos' => Memo::where('student_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+                'memos' => Memo::where('student_id', auth('student')->user()->id)->orderByDesc('created_at')->take(5)->get(),
             ]);
         }
         elseif (auth('parents')->check()) {
@@ -51,7 +51,7 @@ class DashboardController extends Controller
                 'allTeachers' => $allTeachers,
                 'allSubjects' => $allSubjects,
                 'classrooms' => Classroom::paginate(5),
-                'memos' => Memo::where('parents_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+                'memos' => Memo::where('parents_id', auth('parents')->user()->id)->orderByDesc('created_at')->take(5)->get(),
             ]);
         }
         elseif (auth('teacher')->check()) {
@@ -63,7 +63,7 @@ class DashboardController extends Controller
                 'allTeachers' => $allTeachers,
                 'allSubjects' => $allSubjects,
                 'classrooms' => Classroom::paginate(5),
-                'memos' => Memo::where('teacher_id', auth()->user()->id)->orderByDesc('created_at')->take(5)->get(),
+                'memos' => Memo::where('teacher_id', auth('teacher')->user()->id)->orderByDesc('created_at')->take(5)->get(),
             ]);
         }
         else {

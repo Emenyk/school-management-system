@@ -17,11 +17,11 @@
                                                 <label></label>
                                             </div>
                                         </td>
-                                        <td><a href="#">Jeremy Massey</a></td>
-                                        <td><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                                        <td><a href="#">Topic</a></td>
+                                        <td><a href="#">Message</a>
                                         </td>
-                                        <td><i class="fa fa-paperclip"></i></td>
-                                        <td class="text-right mail-date">Tue, Nov 25</td>
+                                        <td><a href="#">Read</a></td>
+                                        <td class="text-right mail-date">Date</td>
                                     </tr>
                                     @isset($memos)
                                     @foreach ($memos as $memo)
@@ -35,7 +35,7 @@
                                         </td>
                                         <td><a href="#">{{ $memo->subject }}</a></td>
                                         <td><a href="#">{{ $memo->body }}</a></td>
-                                        <td></td>
+                                        <td><a href="{{ route('memo.show', [$memo]) }}"><i class="fa fa-eye"></i></a></td>
                                         <td class="text-right mail-date">{{ $memo->created_at }}</td>
                                     </tr>
                                     @endforeach
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="panel-footer ib-ml-ft">
-                        <i class="fa fa-eye"> </i> 6 unread
+                        <i class="fa fa-mailbox"> </i>{{ @count($memos) }} messages
                     </div>
                 </div>
             </div>

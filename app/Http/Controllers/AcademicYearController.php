@@ -28,11 +28,15 @@ class AcademicYearController extends Controller
      */
     public function store(Request $request)
     {
-        $academicSession = new AcademicYear();
-        $academicSession->academicYear = $request->academicYear;
-        $academicSession->term = $request->term;
-        $academicSession->save();
-        return redirect()->route('dashboard')->with('success', 'the academic year has been added successfully');
+        if (auth()->user()) {
+            $academicSession = new AcademicYear();
+            $academicSession->academicYear = $request->academicYear;
+            $academicSession->term = $request->term;
+            $academicSession->save();
+            return redirect()->route('dashboard')->with('success', 'the academic year has been added successfully');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**

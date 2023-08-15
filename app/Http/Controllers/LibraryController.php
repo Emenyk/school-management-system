@@ -25,9 +25,13 @@ class LibraryController extends Controller
      */
     public function create()
     {
-        return view('library.create', [
-            'classrooms' => Classroom::all()
-        ]);
+        if (auth()->user()) {
+            return view('library.create', [
+                'classrooms' => Classroom::all()
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -35,26 +39,29 @@ class LibraryController extends Controller
      */
     public function store(StoreLibraryRequest $request)
     {
+        if (auth()->user()) {
+            $asset = new Library();
+            $asset->asset = $request->asset;
+            $asset->author = $request->author;
+            $asset->year = $request->year;
+            $asset->classroom = $request->classroom;
+            $asset->status = $request->status;
+            $asset->type = $request->type;
+            $asset->price = $request->price;
+            if ($request->hasFile('file')) {
 
-        $asset = new Library();
-        $asset->asset = $request->asset;
-        $asset->author = $request->author;
-        $asset->year = $request->year;
-        $asset->classroom = $request->classroom;
-        $asset->status = $request->status;
-        $asset->type = $request->type;
-        $asset->price = $request->price;
-        if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = time().'.'.$file->extension();
+                $file->storeAs('public/libraries', $fileName);
+                $asset->file = $fileName;
 
-            $file = $request->file('file');
-            $fileName = time().'.'.$file->extension();
-            $file->storeAs('public/libraries', $fileName);
-            $asset->file = $fileName;
+            }
+            $asset->save();
 
+            return redirect()->route('libraries.index')->with('success', 'Library asset stored successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $asset->save();
-
-        return redirect()->route('libraries.index')->with('success', 'Library asset stored successfully!');
     }
 
     /**
@@ -72,10 +79,14 @@ class LibraryController extends Controller
      */
     public function edit(library $library)
     {
-        return view('library.edit', [
-            'library' => $library,
-            'classrooms' => Classroom::all()
-        ]);
+        if (auth()->user()) {
+            return view('library.edit', [
+                'library' => $library,
+                'classrooms' => Classroom::all()
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -83,26 +94,30 @@ class LibraryController extends Controller
      */
     public function update(UpdateLibraryRequest $request, library $library)
     {
-        $library->asset = $request->asset;
-        $library->author = $request->author;
-        $library->year = $request->year;
-        $library->classroom = $request->classroom;
-        $library->status = $request->status;
-        $library->type = $request->type;
-        $library->price = $request->price;
-        if ($request->hasFile('file')) {
-            // Delete the previous file if it exists
-            if ($library->file) {
-                Storage::delete('public/images/libraries/' . $library->file);
+        if (auth()->user()) {
+            $library->asset = $request->asset;
+            $library->author = $request->author;
+            $library->year = $request->year;
+            $library->classroom = $request->classroom;
+            $library->status = $request->status;
+            $library->type = $request->type;
+            $library->price = $request->price;
+            if ($request->hasFile('file')) {
+                // Delete the previous file if it exists
+                if ($library->file) {
+                    Storage::delete('public/images/libraries/' . $library->file);
+                }
+                $file = $request->file('file');
+                $fileName = time().'.'.$file->extension();
+                $file->storeAs('public/libraries', $fileName);
+                $library->file = $fileName;
             }
-            $file = $request->file('file');
-            $fileName = time().'.'.$file->extension();
-            $file->storeAs('public/libraries', $fileName);
-            $library->file = $fileName;
+             $library->update();
+             // You can add any additional logic or redirect here if needed
+            return redirect()->back()->with('success', 'Library asset updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-         $library->update();
-         // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Library asset updated successfully!');
     }
 
     /**
@@ -110,13 +125,17 @@ class LibraryController extends Controller
      */
     public function destroy(library $library)
     {
-        // Delete the associated file if it exists
-        if ($library->file) {
-            Storage::delete('public/libraries/' . $library->file);
+        if (auth()->user()) {
+
+            if ($library->file) {
+                Storage::delete('public/libraries/' . $library->file);
+            }
+            $library->delete();
+            return redirect()->back()->with('success', 'Library asset deleted successfully!');
+
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        $library->delete();
-        // You can add any additional logic or redirect here if needed
-        return redirect()->back()->with('success', 'Library asset deleted successfully!');
     }
 
 }

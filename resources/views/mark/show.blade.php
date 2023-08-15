@@ -45,6 +45,8 @@
                                             <th>Assignment</th>
                                             <th>Test</th>
                                             <th>Examination</th>
+                                            <th>score</th>
+                                            <th>status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,7 +56,18 @@
                                             <td>{{ $mark->subject->name }}</td>
                                             <td>{{ $mark->assignment }}</td>
                                             <td>{{ $mark->test }}</td>
-                                            <td>{{ $mark->test }}</td>
+                                            <td>{{ $mark->exam }}</td>
+                                            @php
+                                                $sum = $mark->assignment + $mark->test + $mark->exam;
+                                            @endphp
+                                            <td>{{ $sum }}</td>
+                                            <td>
+                                                @if ($sum >= 40)
+                                                <input class="btn btn-success" type="button" value="passed">
+                                                @else
+                                                <input class="btn btn-danger" type="button" value="failed">
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

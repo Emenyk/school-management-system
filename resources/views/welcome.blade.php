@@ -58,13 +58,13 @@
 							</ul>
 							<div class="tg-themedropdown tg-languagesdropdown">
                                 @if (auth('student')->check())
-                                    <p>{{ auth('student')->user()->name }}!</p>
+                                    <p style="color: whitesmoke">{{ auth('student')->user()->name }}!</p>
                                 @elseif (auth('parents')->check())
-                                    <p>{{ auth('parents')->user()->name }}!</p>
+                                    <p style="color: whitesmoke">{{ auth('parents')->user()->name }}!</p>
                                 @elseif (auth('teacher')->check())
-                                    <p>{{ auth('teacher')->user()->name }}!</p>
+                                    <p style="color: whitesmoke">{{ auth('teacher')->user()->name }}!</p>
                                 @elseif (auth()->check())
-                                    <p>{{ auth()->user()->name }}!</p>
+                                    <p style="color: whitesmoke">{{ auth()->user()->name }}!</p>
 
                                 @else
 								<a href="javascript:void(0);" id="tg-languages" class="tg-btndropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2103,7 +2103,7 @@
 															<h3><a href="javascript:void(0);">{{ $news->title }}</a></h3>
 														</div>
 														<div class="tg-description">
-															<p> <a href="javascript:void(0);">Read</a></p>
+															<p> <a href="{{ route('news.show', [$news]) }}">Read</a></p>
 														</div>
 													</div>
 												</article>
@@ -2114,7 +2114,7 @@
 
 										</div>
 										<div class="tg-btnsbox">
-											<a class="tg-btn" href="javascript:void(0);">view all news</a>
+											<a class="tg-btn" href="{{ route('news.index') }}">view all news</a>
 										</div>
 									</div>
 								</section>

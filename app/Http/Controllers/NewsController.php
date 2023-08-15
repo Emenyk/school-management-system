@@ -22,7 +22,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        if (auth()->user()) {
+            return view('news.create');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
+        }
     }
 
     /**
@@ -30,69 +34,75 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $news = new News();
-        $news->title = $request->title;
-        $news->body = trim(strip_tags($request->body));
         if (auth()->user()) {
-            try {
-                $adminID = auth()->user()->id;
-                $news->user_id = $adminID;
-                if ($request->hasFile('attachment')) {
-                    $attachment = $request->file('attachment');
-                    $attachmentName = time().'.'.$attachment->extension();
-                    $attachment->storeAs('public/news', $attachmentName);
-                    $news->attachment = $attachmentName;
-                }$news->save();
+            $news = new News();
+            $news->title = $request->title;
+            $news->body = trim(strip_tags($request->body));
+            if (auth()->user()) {
+                try {
+                    $adminID = auth()->user()->id;
+                    $news->user_id = $adminID;
+                    if ($request->hasFile('attachment')) {
+                        $attachment = $request->file('attachment');
+                        $attachmentName = time().'.'.$attachment->extension();
+                        $attachment->storeAs('public/news', $attachmentName);
+                        $news->attachment = $attachmentName;
+                    }$news->save();
 
-            } catch (\Exception $e) {
-                // Handle the exception and push back to the page with an error message
-                return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
+                } catch (\Exception $e) {
+                    // Handle the exception and push back to the page with an error message
+                    return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
+                }
+
+            }elseif (auth('teacher')->user()) {
+
+                try {
+                    $teacherID = auth('teacher')->user()->id;
+                    $news->teacher_id = $teacherID;
+                    if ($request->hasFile('attachment')) {
+                        $attachment = $request->file('attachment');
+                        $attachmentName = time().'.'.$attachment->extension();
+                        $attachment->storeAs('public/news', $attachmentName);
+                        $news->attachment = $attachmentName;
+                    }$news->save();
+
+                } catch (\Exception $e) {
+                    // Handle the exception and push back to the page with an error message
+                    return redirect()->back()->with('error', 'Failed to publish the news. please try again.');
+                }
+
+            }elseif (auth('student')) {
+
+                try {
+                    $studentID = auth('student')->user()->id;
+                    $news->student_id = $studentID;
+                     if ($request->hasFile('attachment')) {
+                        $attachment = $request->file('attachment');
+                        $attachmentName = time().'.'.$attachment->extension();
+                        $attachment->storeAs('public/news', $attachmentName);
+                        $news->attachment = $attachmentName;
+                    }$news->save();
+
+                } catch (\Exception $e) {
+                    // Handle the exception and push back to the page with an error message
+                    return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
+                }
+
             }
-
-        }elseif (auth('teacher')->user()) {
-
-            try {
-                $teacherID = auth('teacher')->user()->id;
-                $news->teacher_id = $teacherID;
-                if ($request->hasFile('attachment')) {
-                    $attachment = $request->file('attachment');
-                    $attachmentName = time().'.'.$attachment->extension();
-                    $attachment->storeAs('public/news', $attachmentName);
-                    $news->attachment = $attachmentName;
-                }$news->save();
-
-            } catch (\Exception $e) {
-                // Handle the exception and push back to the page with an error message
-                return redirect()->back()->with('error', 'Failed to publish the news. please try again.');
-            }
-
-        }elseif (auth('student')) {
-
-            try {
-                $studentID = auth('student')->user()->id;
-                $news->student_id = $studentID;
-                 if ($request->hasFile('attachment')) {
-                    $attachment = $request->file('attachment');
-                    $attachmentName = time().'.'.$attachment->extension();
-                    $attachment->storeAs('public/news', $attachmentName);
-                    $news->attachment = $attachmentName;
-                }$news->save();
-
-            } catch (\Exception $e) {
-                // Handle the exception and push back to the page with an error message
-                return redirect()->back()->with('error', 'Failed to publish the news. Please try again.');
-            }
-
+            return redirect()->route('news.index')->with('success', 'news published successfully!');
+        } else {
+            return redirect()->back()->with('error', 'sorry! you are not permitted to perform this action');
         }
-        return redirect()->route('news.index')->with('success', 'news published successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(News $news)
     {
-        //
+        return view('news.show', [
+            'news' => $news
+        ]);
     }
 
     /**
