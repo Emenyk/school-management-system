@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
         Memo::create([
             'parent_id' => 11,
             'subject' => 'Assignment',
-            'body'    => 'please I will like to see both of you in this morning - Admin'
+            'body'    => 'please I will like to see both of you this morning - Admin'
         ]);
 
         $student = Student::find(1);
